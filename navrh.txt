@@ -1,0 +1,73 @@
+dvere
+    - zamykatelne
+    - heslo
+    - kluc v inych miestnostiach
+predmety
+    - kluc / isic
+    - inventar
+    - index
+    - zbrane
+        - knihy
+        - dezinfekcia
+    - rusko
+    - borovicka - zvyšuje odolnost voci virusu - docane
+        - transport na náhodnú lokaciu
+    - akcie:
+        - pouzitie
+        - zdvihnutie
+        - polozit
+
+mena
+    - najom za internát
+
+Doprava
+    - prevoz autobusom (kombinacie)
+Charakteristiky
+    - meno
+    - skore
+    - zivoty
+    - odolnost voci virusu
+
+npc - postavy mimo hraca
+    - prisery
+        - virus
+obchod
+    - bufet
+
+zeman opatreni
+    - po casovom intervale
+
+qesty
+    - prezentácia z ekonomiky
+    -
+achievemtn
+    - jedz iba pizzu z bufetu
+
+-----------------------------
+rozhovor s vratnickou:
+> hovor vratnicka
+Ahoj, ja som tu nejaka vratcnicka. A ty si?
+> Jozo
+Tak cau.
+
+1. Ako sa mas?
+2. Nemas pre mna nejakú ulohu?
+0. Unocit rohovor
+Vyber moznost > 1
+Vsetko ma boli, tak nezavadzaj
+0.Ukonci rozhovor
+
+1. Ako sa mas?
+2. Nemas pre mna nejakú ulohu?
+3. Unocit rohovor
+Vyber moznost > 2
+Tak ja neviem, dones mi asirin.
+1. Lekarne zavreli, kvoli covid.
+2. Skúsim nejaký najst.
+0. Ukonci rozhovor
+
+Moznost > 1
+Tak padaj Prec.
+0. ukonci rozhovor
+Moznost > 2 acho to budes zlaty
+0. ukonci rozhovor
