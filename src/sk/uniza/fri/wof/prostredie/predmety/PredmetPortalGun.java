@@ -62,16 +62,6 @@ public class PredmetPortalGun implements IPredmet, IKontorlaPolozenia {
             return;
         }
 
-        // n-te pouzie
-//        if (this.cerveny) {
-//            System.out.println("Polozil si cerveny");
-//            this.miestnostCerveny = miestnost;
-//            this.cerveny = true;
-//        } else if (this.modry) {
-//            System.out.println("Polozil si modry");
-//            this.miestnostModry = miestnost;
-//            this.modry = true;
-//        }
 
 
 
