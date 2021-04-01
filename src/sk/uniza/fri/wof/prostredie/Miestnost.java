@@ -109,4 +109,10 @@ public class Miestnost {
     public String getMenoMiestnosi() {
         return this.menoMiestnosti;
     }
+
+    public void vymazVychod(String nazovVychodu) {
+        if (vychody.containsKey(nazovVychodu)) {
+            this.vychody.remove(nazovVychodu);
+        }
+    }
 }
