@@ -33,7 +33,48 @@ public class PredmetPortalGun implements IPredmet, IKontorlaPolozenia {
     }
 
     @Override
-    public void pouziSa() {
+    public void pouziSa(Miestnost miestnost) {
+        // 1 použie
+        if (!this.cerveny) {
+            System.out.println("Polozil si cerveny");
+            if (this.miestnostModry != null && this.miestnostCerveny != null) {
+                this.prostredie.odstranVychod("cerveny", this.miestnostCerveny);
+            }
+            this.miestnostCerveny = miestnost;
+            this.cerveny = true;
+            this.modry = false;
+        } else if (!this.modry) {
+            System.out.println("Polozil si modry");
+            if (this.miestnostModry != null && this.miestnostCerveny != null) {
+                this.prostredie.odstranVychod("modry", this.miestnostModry);
+            }
+            this.miestnostModry = miestnost;
+            this.modry = true;
+            this.cerveny = false;
+        }
+
+        if (this.miestnostModry != null && this.miestnostCerveny != null) {
+            // tu sa navzájom vymenia miestnosti a vytvori sa východy
+            this.prostredie.pridajVychod("cerveny", this.miestnostModry, this.miestnostCerveny);
+            this.prostredie.pridajVychod("modry", this.miestnostCerveny, this.miestnostModry);
+            //this.miestnostCerveny = miestnost;
+            //this.cerveny = true;
+            return;
+        }
+
+        // n-te pouzie
+//        if (this.cerveny) {
+//            System.out.println("Polozil si cerveny");
+//            this.miestnostCerveny = miestnost;
+//            this.cerveny = true;
+//        } else if (this.modry) {
+//            System.out.println("Polozil si modry");
+//            this.miestnostModry = miestnost;
+//            this.modry = true;
+//        }
+
+
+
 
     }
 

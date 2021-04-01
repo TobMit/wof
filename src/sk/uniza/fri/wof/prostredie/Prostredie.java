@@ -9,6 +9,7 @@ import sk.uniza.fri.wof.prostredie.npc.NpcReferentka;
 import sk.uniza.fri.wof.prostredie.predmety.Predmet;
 import sk.uniza.fri.wof.prostredie.predmety.PredmetPortalGun;
 import sk.uniza.fri.wof.prostredie.predmety.PredmetRusko;
+
 import java.util.TreeMap;
 
 public class Prostredie {
@@ -113,5 +114,13 @@ public class Prostredie {
 
     public Miestnost getStartovaciaMiestnost() {
         return this.startovaciaMiestnost;
+    }
+
+    public void pridajVychod(String nazovPortalu, Miestnost miestnost, Miestnost miestnostPolozenia) {
+        this.zoznamMiestnosti.get(miestnostPolozenia.getMenoMiestnosi()).nastavVychod(nazovPortalu, this.zoznamMiestnosti.get(miestnost.getMenoMiestnosi()));
+    }
+
+    public void odstranVychod(String nazovPortalu, Miestnost miestnost) {
+        this.zoznamMiestnosti.get(miestnost.getMenoMiestnosi()).vymazVychod(nazovPortalu);
     }
 }
