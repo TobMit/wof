@@ -78,7 +78,7 @@ public class Prostredie {
 
         //vestibula.polozPredmet(new PredmetRusko());
         this.zoznamMiestnosti.get("vestibula").polozPredmet(new Predmet("index"));
-
+        this.zoznamMiestnosti.get("vestibula").polozPredmet(new sk.uniza.fri.wof.prostredie.PredmetPortalGun("TatraTea", "Slovenská verzia PortalGan", this.zoznamMiestnosti));
 
         //chodbaB
         this.zoznamMiestnosti.get("chodbaB").nastavVychod("zapad", this.zoznamMiestnosti.get("chillZone"));
