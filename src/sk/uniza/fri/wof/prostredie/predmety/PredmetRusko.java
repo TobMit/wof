@@ -1,4 +1,5 @@
 package sk.uniza.fri.wof.prostredie.predmety;
+import sk.uniza.fri.wof.prostredie.Miestnost;
 
 public class PredmetRusko implements IPredmet, IKontorlaPolozenia {
     private boolean nasadene;
@@ -13,7 +14,7 @@ public class PredmetRusko implements IPredmet, IKontorlaPolozenia {
     }
 
     @Override
-    public void pouziSa() {
+    public void pouziSa(Miestnost miestnost) {
         if (!this.nasadene) {
             System.out.println("Nasadil si si rusko");
             this.nasadene = true;

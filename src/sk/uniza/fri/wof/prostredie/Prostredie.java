@@ -84,7 +84,8 @@ public class Prostredie {
 
         //vestibula.polozPredmet(new PredmetRusko());
         this.zoznamMiestnosti.get("vestibula").polozPredmet(new Predmet("index"));
-        this.zoznamMiestnosti.get("vestibula").polozPredmet(new PredmetPortalGun("TatraTea", "Slovenská verzia PortalGan", this.zoznamMiestnosti));
+        //this.zoznamMiestnosti.get("vestibula").polozPredmet(new PredmetPortalGun("TatraTea", "Slovenská verzia PortalGan", this));
+        this.zoznamMiestnosti.get("vestibula").polozPredmet(new PredmetPortalGun("TatraTea", "Slovenská verzia PortalGan", this));
 
         //chodbaB
         this.zoznamMiestnosti.get("chodbaB").nastavVychod("zapad", this.zoznamMiestnosti.get("chillZone"));

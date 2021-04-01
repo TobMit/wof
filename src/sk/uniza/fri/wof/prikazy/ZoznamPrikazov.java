@@ -19,8 +19,7 @@ import sk.uniza.fri.wof.prostredie.npc.NpcReferentka;
 public class ZoznamPrikazov {
     // konstantne pole nazvov prikazov
     private static final String[] PLATNE_PRIKAZY = {
-            "chod", "ukonci", "pomoc", "hovor", "zober", "poloz", "inventar", "pouzi",
-            "nakupuj"
+            "chod", "ukonci", "pomoc", "hovor", "zober", "poloz", "inventar", "pouzi", "nakupuj"
     };
 
     /**

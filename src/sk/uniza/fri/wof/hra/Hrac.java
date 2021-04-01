@@ -84,7 +84,7 @@ public class Hrac {
         if (predmet == null) {
             return false;
         }
-        predmet.pouziSa();
+        predmet.pouziSa(this.aktualnaMiestnost);
         return true;
     }
 

@@ -4,7 +4,6 @@ import sk.uniza.fri.wof.prostredie.Miestnost;
 import sk.uniza.fri.wof.prostredie.Prostredie;
 import sk.uniza.fri.wof.prostredie.predmety.IPredmet;
 
-import java.util.TreeMap;
 
 public class PredmetPortalGun implements IPredmet, IKontorlaPolozenia {
     private final String nazov;
@@ -16,7 +15,7 @@ public class PredmetPortalGun implements IPredmet, IKontorlaPolozenia {
     private  Miestnost miestnostModry;
     private  Miestnost miestnostCerveny;
 
-    public PredmetPortalGun(String nazov, String popis, TreeMap<String, Miestnost> zoznamMiestnosti) {
+    public PredmetPortalGun(String nazov, String popis, Prostredie prostredie) {
 
         this.nazov = nazov;
         this.popis = popis;
