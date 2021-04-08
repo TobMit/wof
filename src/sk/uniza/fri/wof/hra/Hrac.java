@@ -38,8 +38,23 @@ public class Hrac {
         for (Quest quest : zoznamQuestov) {
             quest.hracVosielDoMiestnosti(this.aktualnaMiestnost);
         }
+
+        skontrulujQuesty();
+
         return true;
     }
+
+    private void skontrulujQuesty() {
+        ArrayList<Quest> vyrieseneQuesty = new ArrayList<>();
+        for (Quest quest : zoznamQuestov) {
+            if (quest.getJeUkonceny()) {
+                vyrieseneQuesty.add(quest);
+
+            }
+        }
+        this.zoznamQuestov.removeAll(vyrieseneQuesty);
+    }
+
 
     public void zobrazInventar() {
         if (!this.inventar.isEmpty()) {
@@ -94,13 +109,18 @@ public class Hrac {
 
     public void pridelQuest(Quest quest) {
         this.zoznamQuestov.add(quest);
-        System.out.printf("Quset %s bol prideleny\n", quest.getNazov());
+        System.out.printf("Quest %s bol prideleny\n", quest.getNazov());
     }
 
     public void zobrazQuestlog() {
-        System.out.println("Tvoje questy: ");
-        for (Quest quest : this.zoznamQuestov) {
-            System.out.println("\t" + quest.getNazov());
+        if (!this.zoznamQuestov.isEmpty()) {
+            System.out.println("Tvoje questy: ");
+            for (Quest quest : this.zoznamQuestov) {
+                System.out.println("\t" + quest.getNazov());
+            }
+        } else {
+            System.out.println("Nemas ziadne questy.");
         }
     }
+
 }
