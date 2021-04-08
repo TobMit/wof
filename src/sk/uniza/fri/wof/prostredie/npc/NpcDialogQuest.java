@@ -4,7 +4,7 @@ import sk.uniza.fri.wof.hra.Hrac;
 
 public class NpcDialogQuest implements INpcDialogVrchol {
     private final String repilika;
-    private final Quest quest;
+    private Quest quest;
 
     public NpcDialogQuest(String repilika, Quest quest) {
         this.repilika = repilika;
@@ -13,8 +13,14 @@ public class NpcDialogQuest implements INpcDialogVrchol {
 
     @Override
     public NpcDialogQuest vykonaj(Hrac hrac) {
-        System.out.printf("%s\n", this.repilika);
-        hrac.pridelQuest(this.quest);
+
+        if (this.quest != null) {
+            System.out.printf("%s\n", this.repilika);
+            hrac.pridelQuest(this.quest);
+            this.quest = null;
+        } else {
+            System.out.println("Uz ti nemam co povedat.");
+        }
         return null;
     }
 }
