@@ -13,10 +13,7 @@ public class NpcReferentka extends Npc {
     public NpcReferentka(String meno, TreeMap<String, Miestnost> zoznamMiestnosti, String menoMiestnosi) {
         super(meno);
         this.zoznamMiestnosti = zoznamMiestnosti;
-        //this.vypisSa();
-        //this.najdiNajkratsiuCestu();
         this.menoAktualnejMiestnosti = menoMiestnosi;
-        Graf cesta = new Graf(this.zoznamMiestnosti);
     }
 
     public void hovor() {
@@ -69,10 +66,6 @@ public class NpcReferentka extends Npc {
     private void najdiNajkratsiuCestu(String ciel) {
         Graf cesta = new Graf(this.zoznamMiestnosti);
         cesta.najdiTrasu(this.menoAktualnejMiestnosti, ciel);
-        //ZAVOLAT METODY!
-        //HladanieCesty cesta = new HladanieCesty(3, 7);
-        //this.hladanieCesty = new HladanieCesty(2, 7);
 
-        //this.hladanieCesty.vypisNajkratsiuCestuDoZadanehoVrcholu();
     }
 }

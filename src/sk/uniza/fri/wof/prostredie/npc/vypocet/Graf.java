@@ -25,36 +25,18 @@ public class Graf {
             pocitadlo++;
         }
 
-//        for (String s : this.konverzia.keySet()) {
-//            System.out.println(s + " " + konverzia.get(s));
-//        }
-
-
-
         this.H = new int[1 + m][3];
 
         pocitadlo = 0;
         for (String miestnosti : zoznamMiestnosti.keySet()) {
-            //System.out.printf( miestnosti + " ");
             TreeMap<String, Miestnost> vychody = zoznamMiestnosti.get(miestnosti).getZoznamVychodov();
-            //int pocetVychodov = 0;
             for (String vychod : vychody.keySet()) {
-                //System.out.printf("%s %s 1\n", konverzia.get(miestnosti), konverzia.get(vychody.get(vychod).getMenoMiestnosi()));
                 this.H[pocitadlo][0] = konverzia.get(miestnosti);
                 this.H[pocitadlo][1] = konverzia.get(vychody.get(vychod).getMenoMiestnosi());
                 this.H[pocitadlo][2] = 1;
-                //pocetVychodov++;
                 pocitadlo++;
             }
-            //pocitadlo++;
         }
-
-//        for (int i = 0; i < this.H.length; i++) {
-//            for (int j = 0; j < this.H[i].length; j++) {
-//                System.out.print(this.H[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
 
     }
 
@@ -100,21 +82,15 @@ public class Graf {
 
             }
         }
-        //System.out.println("Vzdialenosť z vrchola " + u + " do vrchola " + v + " je " + t[v]);
 
         //Najkratsia cesta
         int w = v;
 
         System.out.println("Našla som pre teba cestu:");
-        //System.out.println("\t" + this.dekonverzia.get(w));
-        //System.out.println(w);
         ArrayList<Integer> arrayListX = new ArrayList<>();
         arrayListX.add(w);
         while (x[w] > 0) {
             arrayListX.add(x[w]);
-            //System.out.println("\t" + dekonverzia.get(x[w]));
-            //System.out.println(x[w]);
-
             w = x[w];
         }
         while (!arrayListX.isEmpty()) {
