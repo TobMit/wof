@@ -1,11 +1,6 @@
 package sk.uniza.fri.wof.prostredie;
 
-import sk.uniza.fri.wof.prostredie.npc.NpcDialogHrana;
-import sk.uniza.fri.wof.prostredie.npc.NpcDialogVrchol;
-import sk.uniza.fri.wof.prostredie.npc.NpcDialogVstup;
-import sk.uniza.fri.wof.prostredie.npc.NpcDialogove;
-import sk.uniza.fri.wof.prostredie.npc.NpcObchodnik;
-import sk.uniza.fri.wof.prostredie.npc.NpcReferentka;
+import sk.uniza.fri.wof.prostredie.npc.*;
 import sk.uniza.fri.wof.prostredie.predmety.Predmet;
 import sk.uniza.fri.wof.prostredie.predmety.PredmetPortalGun;
 import sk.uniza.fri.wof.prostredie.predmety.PredmetRusko;
@@ -75,6 +70,9 @@ public class Prostredie {
                 new NpcDialogHrana("Nemas pre mna nejaku ulohu?", donesAspirin)
         );
         NpcDialogVstup korenDialogovehoStromuVratnicka = new NpcDialogVstup("Ahoj, ja som tu nejaka vratnicka. A ty si?", uvod);
+
+        NpcDialogQuest korenDialogovehoStromuUcitel = new NpcDialogQuest("Uz meskas na prezentaciu", new Quest("prezentacia"));
+        this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcDialogove("ucitel", korenDialogovehoStromuUcitel));
 
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcDialogove("vratnicka", korenDialogovehoStromuVratnicka));
 

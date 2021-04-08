@@ -1,5 +1,7 @@
 package sk.uniza.fri.wof.prostredie.npc;
 
+import sk.uniza.fri.wof.hra.Hrac;
+
 import java.util.Scanner;
 
 public class NpcDialogVstup implements INpcDialogVrchol {
@@ -11,7 +13,7 @@ public class NpcDialogVstup implements INpcDialogVrchol {
         this.vystupnyVrcholHrany = vystupnyVrcholHrany;
     }
 
-    public INpcDialogVrchol vykonaj() {
+    public INpcDialogVrchol vykonaj(Hrac hrac) {
         Scanner vstup = new Scanner(System.in);
         System.out.println(this.replikaNpc);
         System.out.print("> ");

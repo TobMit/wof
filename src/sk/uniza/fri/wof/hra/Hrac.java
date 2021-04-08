@@ -1,18 +1,22 @@
 package sk.uniza.fri.wof.hra;
 
 import sk.uniza.fri.wof.prostredie.*;
+import sk.uniza.fri.wof.prostredie.npc.Quest;
 import sk.uniza.fri.wof.prostredie.predmety.IKontorlaPolozenia;
 import sk.uniza.fri.wof.prostredie.predmety.IPredmet;
 
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class Hrac {
     private final TreeMap<String, IPredmet> inventar;
+    private final ArrayList<Quest> zoznamQuestov;
     private Miestnost aktualnaMiestnost;
 
     public Hrac(Prostredie prostredie) {
         this.aktualnaMiestnost = prostredie.getStartovaciaMiestnost();
         this.inventar = new TreeMap<>();
+        this.zoznamQuestov = new ArrayList<>();
     }
 
     public Miestnost getAktualnaMiestnost() {
@@ -90,5 +94,10 @@ public class Hrac {
 
     public void zoberPredmet(IPredmet predmet) {
         this.inventar.put(predmet.getMeno(), predmet);
+    }
+
+    public void pridelQuest(Quest quest) {
+        this.zoznamQuestov.add(quest);
+        System.out.printf("Quset %s bol prideleny\n", quest.getNazov());
     }
 }

@@ -1,5 +1,7 @@
 package sk.uniza.fri.wof.prostredie.npc;
 
+import sk.uniza.fri.wof.hra.Hrac;
+
 public class NpcDialogove extends Npc {
     private final INpcDialogVrchol korenDialogovehoStromu;
 
@@ -8,10 +10,10 @@ public class NpcDialogove extends Npc {
         this.korenDialogovehoStromu = korenDialogovehoStromu;
     }
 
-    public void hovor() {
+    public void hovor(Hrac hrac) {
         INpcDialogVrchol aktualny = this.korenDialogovehoStromu;
         do {
-            aktualny = aktualny.vykonaj();
+            aktualny = aktualny.vykonaj(hrac);
         } while (aktualny != null);
     }
 }

@@ -143,7 +143,7 @@ public class ZoznamPrikazov {
     private void hovorSNpc(Prikaz prikaz, Hrac hrac) {
         Npc npc = hrac.getAktualnaMiestnost().getNpc(prikaz.getParameter());
         if (npc instanceof NpcDialogove) {
-            ((NpcDialogove)npc).hovor();
+            ((NpcDialogove)npc).hovor(hrac);
         } else if (npc instanceof NpcObchodnik) {
             ((NpcObchodnik)npc).nakupuj(hrac);
         } else if (npc instanceof NpcReferentka) {
@@ -184,7 +184,7 @@ public class ZoznamPrikazov {
     private void nakupujUNpc(Prikaz prikaz, Hrac hrac) {
         Npc npc = hrac.getAktualnaMiestnost().getNpc(prikaz.getParameter());
         if (npc instanceof NpcDialogove) {
-            ((NpcDialogove)npc).hovor();
+            ((NpcDialogove)npc).hovor(hrac);
         } else if (npc instanceof NpcObchodnik) {
             ((NpcObchodnik)npc).nakupuj(hrac);
         } else {
