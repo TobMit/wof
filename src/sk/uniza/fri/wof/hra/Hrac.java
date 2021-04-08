@@ -64,13 +64,6 @@ public class Hrac {
             return false;
         }
 
-        //toto je bezpečné pretipovanie, overenie či je ten predmet rusko
-//        if (predmet instanceof PredmetRusko) {
-//            PredmetRusko rusko = (PredmetRusko)predmet;
-//            if (rusko.getNasadene()) {
-//                return false;
-//            }
-//        }
         if (predmet instanceof IKontorlaPolozenia) {
             if (!((IKontorlaPolozenia)predmet).getDaSaPolozit()) {
                 return false;
@@ -99,5 +92,12 @@ public class Hrac {
     public void pridelQuest(Quest quest) {
         this.zoznamQuestov.add(quest);
         System.out.printf("Quset %s bol prideleny\n", quest.getNazov());
+    }
+
+    public void zobrazQuestlog() {
+        System.out.println("Tvoje questy: ");
+        for (Quest quest : this.zoznamQuestov) {
+            System.out.println("\t" + quest.getNazov());
+        }
     }
 }

@@ -19,7 +19,8 @@ import sk.uniza.fri.wof.prostredie.npc.NpcReferentka;
 public class ZoznamPrikazov {
     // konstantne pole nazvov prikazov
     private static final String[] PLATNE_PRIKAZY = {
-            "chod", "ukonci", "pomoc", "hovor", "zober", "poloz", "inventar", "pouzi", "nakupuj"
+            "chod", "ukonci", "pomoc", "hovor", "zober", "poloz", "inventar", "pouzi", "nakupuj",
+            "questlog"
     };
 
     /**
@@ -80,13 +81,13 @@ public class ZoznamPrikazov {
             case "nakupuj":
                 this.nakupujUNpc(prikaz, hrac);
                 return false;
+            case "questlog":
+                this.zobrazQuestlog(prikaz, hrac);
+                return false;
             default:
                 return false;
         }
     }
-
-
-
 
     /**
      * Vykona pokus o prechod do miestnosti urcenej danym smerom.
@@ -190,5 +191,9 @@ public class ZoznamPrikazov {
         } else {
             System.out.printf("Od %s sa nedá kúpiť!%n", prikaz.getParameter());
         }
+    }
+
+    private void zobrazQuestlog(Prikaz prikaz, Hrac hrac) {
+        hrac.zobrazQuestlog();
     }
 }
