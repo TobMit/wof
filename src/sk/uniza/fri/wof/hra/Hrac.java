@@ -35,6 +35,9 @@ public class Hrac {
         }
 
         this.aktualnaMiestnost = novaMiestnost;
+        for (Quest quest : zoznamQuestov) {
+            quest.hracVosielDoMiestnosti(this.aktualnaMiestnost);
+        }
         return true;
     }
 
