@@ -10,7 +10,7 @@ import java.util.TreeMap;
 
 public class Hrac {
     private final TreeMap<String, IPredmet> inventar;
-    private final ArrayList<Quest> zoznamQuestov;
+    private final ArrayList<IQuest> zoznamQuestov;
     private Miestnost aktualnaMiestnost;
 
     public Hrac(Prostredie prostredie) {
@@ -36,7 +36,7 @@ public class Hrac {
 
         this.aktualnaMiestnost = novaMiestnost;
 
-        for (Quest quest : zoznamQuestov) {
+        for (IQuest quest : zoznamQuestov) {
             quest.hracVosielDoMiestnosti(this);
         }
 
@@ -46,9 +46,9 @@ public class Hrac {
     }
 
     private void skontrulujQuesty() {
-        ArrayList<Quest> ukoncene = new ArrayList<>();
+        ArrayList<IQuest> ukoncene = new ArrayList<>();
 
-        for (Quest quest : this.zoznamQuestov) {
+        for (IQuest quest : this.zoznamQuestov) {
             if (quest.getJeUkonceny()) {
                 ukoncene.add(quest);
                 System.out.printf("Vyriesil si quest %s%n", quest.getNazov());
@@ -110,7 +110,7 @@ public class Hrac {
         this.inventar.put(predmet.getMeno(), predmet);
     }
 
-    public void pridelQuest(Quest quest) {
+    public void pridelQuest(IQuest quest) {
         this.zoznamQuestov.add(quest);
         System.out.printf("Quest %s bol prideleny\n", quest.getNazov());
     }
@@ -118,7 +118,7 @@ public class Hrac {
     public void zobrazQuestlog() {
         if (!this.zoznamQuestov.isEmpty()) {
             System.out.println("Tvoje questy: ");
-            for (Quest quest : this.zoznamQuestov) {
+            for (IQuest quest : this.zoznamQuestov) {
                 System.out.println("\t" + quest.getNazov());
             }
         } else {
@@ -127,7 +127,7 @@ public class Hrac {
     }
 
     public void poziQusetovyPredmet(QuestovyPredmet questovyPredmet) {
-        for (Quest quest : zoznamQuestov) {
+        for (IQuest quest : zoznamQuestov) {
             quest.hracPouzilQuestovyPredmet(this, questovyPredmet);
         }
 

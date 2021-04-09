@@ -2,7 +2,7 @@ package sk.uniza.fri.wof.prostredie;
 
 import sk.uniza.fri.wof.hra.Hrac;
 
-public class Quest {
+public class Quest implements IQuest {
     private final String quest;
     private boolean jeUkonceny;
     private boolean bolUsbSpawnuty;
@@ -14,6 +14,7 @@ public class Quest {
         this.bolUsbSpawnuty = false;
     }
 
+    @Override
     public void hracVosielDoMiestnosti(Hrac hrac) {
         if (hrac.getAktualnaMiestnost().getPopis().startsWith("RA006")) {
             if (hrac.getMaPredmet("usb")) {
@@ -29,6 +30,7 @@ public class Quest {
         }
     }
 
+    @Override
     public void hracPouzilQuestovyPredmet(Hrac hrac, QuestovyPredmet questovyPredmet) {
         if (questovyPredmet.getMeno().equals("usb")) {
             if (hrac.getAktualnaMiestnost().getPopis().startsWith("RA006")) {
@@ -39,10 +41,12 @@ public class Quest {
         }
     }
 
+    @Override
     public boolean getJeUkonceny() {
         return this.jeUkonceny;
     }
 
+    @Override
     public String getNazov() {
         return this.quest;
     }
