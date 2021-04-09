@@ -13,7 +13,7 @@ public class NpcDialogVrchol implements INpcDialogVrchol {
         this.hrany = hrany;
     }
 
-    public NpcDialogVrchol vykonaj(Hrac hrac) {
+    public INpcDialogVrchol vykonaj(Hrac hrac) {
         Scanner vstup = new Scanner(System.in);
 
         System.out.println(this.replikaNpc);

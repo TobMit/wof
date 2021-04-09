@@ -2,9 +2,9 @@ package sk.uniza.fri.wof.prostredie.npc;
 
 public class NpcDialogHrana {
     private final String replikaHraca;
-    private final NpcDialogVrchol vystupnyVrchol;
+    private final INpcDialogVrchol vystupnyVrchol;
 
-    public NpcDialogHrana(String replikaHraca, NpcDialogVrchol vystupnyVrchol) {
+    public NpcDialogHrana(String replikaHraca, INpcDialogVrchol vystupnyVrchol) {
         this.replikaHraca = replikaHraca;
         this.vystupnyVrchol = vystupnyVrchol;
     }
@@ -13,7 +13,7 @@ public class NpcDialogHrana {
         return this.replikaHraca;
     }
 
-    public NpcDialogVrchol getVystupnyVrchol() {
+    public INpcDialogVrchol getVystupnyVrchol() {
         return this.vystupnyVrchol;
     }
 }

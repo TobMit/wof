@@ -58,12 +58,12 @@ public class Prostredie {
 
         NpcDialogVrchol vsetkoMaBoli = new NpcDialogVrchol("Vsetko ma boli, tak nezavadzaj.");
         NpcDialogVrchol padajPrec = new NpcDialogVrchol("Joj, tak padaj prec.");
-        //NpcDialogQuest = new NpcDialogHrana()
-        NpcDialogVrchol zlaty = new NpcDialogVrchol("Ach to budes zlaty.");
+        NpcDialogQuest vratnickaQuest = new NpcDialogQuest("Dakujem", new Quest("aspirin"));
+        //NpcDialogVrchol zlaty = new NpcDialogVrchol("Ach to budes zlaty.");
         NpcDialogVrchol donesAspirin = new NpcDialogVrchol(
                 "Tak ja neviem, dones mi aspirin.",
                 new NpcDialogHrana("Lekarne zavreli kvoli covid", padajPrec),
-                new NpcDialogHrana("Skusim nejaky najst", zlaty)
+                new NpcDialogHrana("Skusim nejaky najst", vratnickaQuest)
         );
         NpcDialogVrchol uvod = new NpcDialogVrchol(
                 "Tak cau.",
