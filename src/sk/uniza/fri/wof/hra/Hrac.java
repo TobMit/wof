@@ -1,9 +1,10 @@
 package sk.uniza.fri.wof.hra;
 
+import sk.uniza.fri.wof.hra.questy.IQuest;
 import sk.uniza.fri.wof.prostredie.*;
-import sk.uniza.fri.wof.prostredie.Quest;
 import sk.uniza.fri.wof.prostredie.predmety.IKontorlaPolozenia;
 import sk.uniza.fri.wof.prostredie.predmety.IPredmet;
+import sk.uniza.fri.wof.prostredie.predmety.QuestovyPredmet;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
@@ -40,12 +41,12 @@ public class Hrac {
             quest.hracVosielDoMiestnosti(this);
         }
 
-        this.skontrulujQuesty();
+        this.skontrolujQuesty();
 
         return true;
     }
 
-    private void skontrulujQuesty() {
+    private void skontrolujQuesty() {
         ArrayList<IQuest> ukoncene = new ArrayList<>();
 
         for (IQuest quest : this.zoznamQuestov) {
@@ -106,6 +107,10 @@ public class Hrac {
         return true;
     }
 
+    /**
+     * Používa sa pri nakupovanie od obchodníka inak sa používa zoberPredmet(String....)
+     * @param predmet
+     */
     public void zoberPredmet(IPredmet predmet) {
         this.inventar.put(predmet.getMeno(), predmet);
     }
@@ -131,11 +136,27 @@ public class Hrac {
             quest.hracPouzilQuestovyPredmet(this, questovyPredmet);
         }
 
-        skontrulujQuesty();
+        skontrolujQuesty();
 
     }
 
     public boolean getMaPredmet(String nazov) {
         return this.inventar.containsKey(nazov);
+    }
+
+    public boolean maPokracovatVQuestovomRozhovore(NpcDialogKontrolaQuestu kontrolaQuestu) {
+        boolean maPokracovat = true;
+        for (IQuest quest : this.zoznamQuestov) {
+            if (!quest.maPokracovatVQuestovomRozhovore(this, kontrolaQuestu)) {
+                maPokracovat = false;
+            }
+        }
+
+        this.skontrolujQuesty();
+
+        return maPokracovat;
+    }
+    public void odstranPredmet(String nazov) {
+        this.inventar.remove(nazov);
     }
 }

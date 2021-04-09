@@ -1,6 +1,7 @@
-package sk.uniza.fri.wof.prostredie;
+package sk.uniza.fri.wof.prostredie.predmety;
 
 import sk.uniza.fri.wof.hra.Hrac;
+import sk.uniza.fri.wof.prostredie.Miestnost;
 import sk.uniza.fri.wof.prostredie.predmety.IKontorlaPolozenia;
 import sk.uniza.fri.wof.prostredie.predmety.IPredmet;
 

@@ -1,14 +1,16 @@
-package sk.uniza.fri.wof.prostredie;
+package sk.uniza.fri.wof.hra.questy;
 
 import sk.uniza.fri.wof.hra.Hrac;
+import sk.uniza.fri.wof.prostredie.NpcDialogKontrolaQuestu;
+import sk.uniza.fri.wof.prostredie.predmety.QuestovyPredmet;
 
-public class Quest implements IQuest {
+public class QuestPrezentacia implements IQuest {
     private final String quest;
     private boolean jeUkonceny;
     private boolean bolUsbSpawnuty;
 
 
-    public Quest(String quest) {
+    public QuestPrezentacia(String quest) {
         this.quest = quest;
         this.jeUkonceny = false;
         this.bolUsbSpawnuty = false;
@@ -49,6 +51,11 @@ public class Quest implements IQuest {
     @Override
     public String getNazov() {
         return this.quest;
+    }
+
+    @Override
+    public boolean maPokracovatVQuestovomRozhovore(Hrac hrac, NpcDialogKontrolaQuestu kontrolaQuestu) {
+        return true;
     }
 
 }

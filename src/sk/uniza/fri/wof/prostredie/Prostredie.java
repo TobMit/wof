@@ -1,5 +1,7 @@
 package sk.uniza.fri.wof.prostredie;
 
+import sk.uniza.fri.wof.hra.questy.QuestAspirin;
+import sk.uniza.fri.wof.hra.questy.QuestPrezentacia;
 import sk.uniza.fri.wof.prostredie.npc.*;
 import sk.uniza.fri.wof.prostredie.predmety.Predmet;
 import sk.uniza.fri.wof.prostredie.predmety.PredmetPortalGun;
@@ -58,7 +60,7 @@ public class Prostredie {
 
         NpcDialogVrchol vsetkoMaBoli = new NpcDialogVrchol("Vsetko ma boli, tak nezavadzaj.");
         NpcDialogVrchol padajPrec = new NpcDialogVrchol("Joj, tak padaj prec.");
-        NpcDialogQuest vratnickaQuest = new NpcDialogQuest("Dakujem", new Quest("aspirin"));
+        NpcDialogQuest vratnickaQuest = new NpcDialogQuest("Dakujem", new QuestAspirin("aspirin"));
         //NpcDialogVrchol zlaty = new NpcDialogVrchol("Ach to budes zlaty.");
         NpcDialogVrchol donesAspirin = new NpcDialogVrchol(
                 "Tak ja neviem, dones mi aspirin.",
@@ -71,11 +73,11 @@ public class Prostredie {
                 new NpcDialogHrana("Nemas pre mna nejaku ulohu?", donesAspirin)
         );
         NpcDialogVstup korenDialogovehoStromuVratnicka = new NpcDialogVstup("Ahoj, ja som tu nejaka vratnicka. A ty si?", uvod);
-
-        NpcDialogQuest korenDialogovehoStromuUcitel = new NpcDialogQuest("Uz meskas na prezentaciu", new Quest("prezentacia"));
+        NpcDialogKontrolaQuestu kontrolaAspirinu = new NpcDialogKontrolaQuestu("aspirin", korenDialogovehoStromuVratnicka);
+        NpcDialogQuest korenDialogovehoStromuUcitel = new NpcDialogQuest("Uz meskas na prezentaciu", new QuestPrezentacia("prezentacia"));
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcDialogove("ucitel", korenDialogovehoStromuUcitel));
 
-        this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcDialogove("vratnicka", korenDialogovehoStromuVratnicka));
+        this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcDialogove("vratnicka", kontrolaAspirinu));
 
         NpcDialogVrchol korenDialogovehoStromuBufetarka = new NpcDialogVrchol("Zatial nemas naprogramovane predmety, tak sa s tebou nebavim");
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcDialogove("bufetarka", korenDialogovehoStromuBufetarka));
