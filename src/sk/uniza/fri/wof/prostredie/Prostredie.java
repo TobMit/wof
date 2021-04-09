@@ -58,6 +58,7 @@ public class Prostredie {
 
         NpcDialogVrchol vsetkoMaBoli = new NpcDialogVrchol("Vsetko ma boli, tak nezavadzaj.");
         NpcDialogVrchol padajPrec = new NpcDialogVrchol("Joj, tak padaj prec.");
+        //NpcDialogQuest = new NpcDialogHrana()
         NpcDialogVrchol zlaty = new NpcDialogVrchol("Ach to budes zlaty.");
         NpcDialogVrchol donesAspirin = new NpcDialogVrchol(
                 "Tak ja neviem, dones mi aspirin.",
@@ -80,6 +81,7 @@ public class Prostredie {
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcDialogove("bufetarka", korenDialogovehoStromuBufetarka));
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcObchodnik("jozo", new PredmetRusko(), new Predmet("index"), new Predmet("borovicka")));
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcReferentka("referentka", this.zoznamMiestnosti, this.startovaciaMiestnost.getMenoMiestnosi()));
+
 
         //vestibula.polozPredmet(new PredmetRusko());
         this.zoznamMiestnosti.get("vestibula").polozPredmet(new Predmet("index"));

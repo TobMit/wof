@@ -1,7 +1,7 @@
 package sk.uniza.fri.wof.hra;
 
 import sk.uniza.fri.wof.prostredie.*;
-import sk.uniza.fri.wof.prostredie.npc.Quest;
+import sk.uniza.fri.wof.prostredie.Quest;
 import sk.uniza.fri.wof.prostredie.predmety.IKontorlaPolozenia;
 import sk.uniza.fri.wof.prostredie.predmety.IPredmet;
 
@@ -35,24 +35,27 @@ public class Hrac {
         }
 
         this.aktualnaMiestnost = novaMiestnost;
+
         for (Quest quest : zoznamQuestov) {
-            quest.hracVosielDoMiestnosti(this.aktualnaMiestnost);
+            quest.hracVosielDoMiestnosti(this);
         }
 
-        skontrulujQuesty();
+        this.skontrulujQuesty();
 
         return true;
     }
 
     private void skontrulujQuesty() {
-        ArrayList<Quest> vyrieseneQuesty = new ArrayList<>();
-        for (Quest quest : zoznamQuestov) {
-            if (quest.getJeUkonceny()) {
-                vyrieseneQuesty.add(quest);
+        ArrayList<Quest> ukoncene = new ArrayList<>();
 
+        for (Quest quest : this.zoznamQuestov) {
+            if (quest.getJeUkonceny()) {
+                ukoncene.add(quest);
+                System.out.printf("Vyriesil si quest %s%n", quest.getNazov());
             }
         }
-        this.zoznamQuestov.removeAll(vyrieseneQuesty);
+
+        this.zoznamQuestov.removeAll(ukoncene);
     }
 
 
@@ -99,7 +102,7 @@ public class Hrac {
         if (predmet == null) {
             return false;
         }
-        predmet.pouziSa(this.aktualnaMiestnost);
+        predmet.pouziSa(this.aktualnaMiestnost, this);
         return true;
     }
 
@@ -123,4 +126,16 @@ public class Hrac {
         }
     }
 
+    public void poziQusetovyPredmet(QuestovyPredmet questovyPredmet) {
+        for (Quest quest : zoznamQuestov) {
+            quest.hracPouzilQuestovyPredmet(this, questovyPredmet);
+        }
+
+        skontrulujQuesty();
+
+    }
+
+    public boolean getMaPredmet(String nazov) {
+        return this.inventar.containsKey(nazov);
+    }
 }

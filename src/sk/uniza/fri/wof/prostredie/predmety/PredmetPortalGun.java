@@ -1,8 +1,8 @@
 package sk.uniza.fri.wof.prostredie.predmety;
 
+import sk.uniza.fri.wof.hra.Hrac;
 import sk.uniza.fri.wof.prostredie.Miestnost;
 import sk.uniza.fri.wof.prostredie.Prostredie;
-import sk.uniza.fri.wof.prostredie.predmety.IPredmet;
 
 
 public class PredmetPortalGun implements IPredmet, IKontorlaPolozenia {
@@ -33,7 +33,7 @@ public class PredmetPortalGun implements IPredmet, IKontorlaPolozenia {
     }
 
     @Override
-    public void pouziSa(Miestnost miestnost) {
+    public void pouziSa(Miestnost miestnost, Hrac hrac) {
         // 1 použie
         if (!this.cerveny) {
             System.out.println("Polozil si cerveny");
@@ -54,11 +54,8 @@ public class PredmetPortalGun implements IPredmet, IKontorlaPolozenia {
         }
 
         if (this.miestnostModry != null && this.miestnostCerveny != null) {
-            // tu sa navzájom vymenia miestnosti a vytvori sa východy
             this.prostredie.pridajVychod("cerveny", this.miestnostModry, this.miestnostCerveny);
             this.prostredie.pridajVychod("modry", this.miestnostCerveny, this.miestnostModry);
-            //this.miestnostCerveny = miestnost;
-            //this.cerveny = true;
             return;
         }
 

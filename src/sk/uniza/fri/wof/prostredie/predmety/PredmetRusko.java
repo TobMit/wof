@@ -1,4 +1,5 @@
 package sk.uniza.fri.wof.prostredie.predmety;
+import sk.uniza.fri.wof.hra.Hrac;
 import sk.uniza.fri.wof.prostredie.Miestnost;
 
 public class PredmetRusko implements IPredmet, IKontorlaPolozenia {
@@ -14,7 +15,7 @@ public class PredmetRusko implements IPredmet, IKontorlaPolozenia {
     }
 
     @Override
-    public void pouziSa(Miestnost miestnost) {
+    public void pouziSa(Miestnost miestnost, Hrac hrac) {
         if (!this.nasadene) {
             System.out.println("Nasadil si si rusko");
             this.nasadene = true;
