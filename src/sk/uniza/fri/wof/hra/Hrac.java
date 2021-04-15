@@ -1,6 +1,6 @@
 package sk.uniza.fri.wof.hra;
 
-import sk.uniza.fri.wof.hra.questy.IQuest;
+import sk.uniza.fri.wof.hra.questy.Quest;
 import sk.uniza.fri.wof.hra.questy.IQuestKontrolaMiestnosti;
 import sk.uniza.fri.wof.hra.questy.IQuestKontrolaNPC;
 import sk.uniza.fri.wof.hra.questy.IquestKontrolaPredmet;
@@ -14,7 +14,7 @@ import java.util.TreeMap;
 
 public class Hrac {
     private final TreeMap<String, IPredmet> inventar;
-    private final ArrayList<IQuest> zoznamQuestov;
+    private final ArrayList<Quest> zoznamQuestov;
     private Miestnost aktualnaMiestnost;
 
     public Hrac(Prostredie prostredie) {
@@ -40,7 +40,7 @@ public class Hrac {
 
         this.aktualnaMiestnost = novaMiestnost;
 
-        for (IQuest quest : zoznamQuestov) {
+        for (Quest quest : this.zoznamQuestov) {
             if (quest instanceof IQuestKontrolaMiestnosti) {
                 ((IQuestKontrolaMiestnosti)quest).hracVosielDoMiestnosti(this);
             }
@@ -52,9 +52,9 @@ public class Hrac {
     }
 
     private void skontrolujQuesty() {
-        ArrayList<IQuest> ukoncene = new ArrayList<>();
+        ArrayList<Quest> ukoncene = new ArrayList<>();
 
-        for (IQuest quest : this.zoznamQuestov) {
+        for (Quest quest : this.zoznamQuestov) {
             if (quest.getJeUkonceny()) {
                 ukoncene.add(quest);
                 System.out.printf("Vyriesil si quest %s%n", quest.getNazov());
@@ -114,13 +114,12 @@ public class Hrac {
 
     /**
      * Používa sa pri nakupovanie od obchodníka inak sa používa zoberPredmet(String....)
-     * @param predmet
      */
     public void zoberPredmet(IPredmet predmet) {
         this.inventar.put(predmet.getMeno(), predmet);
     }
 
-    public void pridelQuest(IQuest quest) {
+    public void pridelQuest(Quest quest) {
         this.zoznamQuestov.add(quest);
         System.out.printf("Quest %s bol prideleny\n", quest.getNazov());
     }
@@ -128,7 +127,7 @@ public class Hrac {
     public void zobrazQuestlog() {
         if (!this.zoznamQuestov.isEmpty()) {
             System.out.println("Tvoje questy: ");
-            for (IQuest quest : this.zoznamQuestov) {
+            for (Quest quest : this.zoznamQuestov) {
                 System.out.println("\t" + quest.getNazov());
             }
         } else {
@@ -137,13 +136,13 @@ public class Hrac {
     }
 
     public void poziQusetovyPredmet(QuestovyPredmet questovyPredmet) {
-        for (IQuest quest : zoznamQuestov) {
+        for (Quest quest : this.zoznamQuestov) {
             if (quest instanceof IquestKontrolaPredmet) {
                 ((IquestKontrolaPredmet)quest).hracPouzilQuestovyPredmet(this, questovyPredmet);
             }
         }
 
-        skontrolujQuesty();
+        this.skontrolujQuesty();
 
     }
 
@@ -153,7 +152,7 @@ public class Hrac {
 
     public boolean maPokracovatVQuestovomRozhovore(NpcDialogKontrolaQuestu kontrolaQuestu) {
         boolean maPokracovat = true;
-        for (IQuest quest : this.zoznamQuestov) {
+        for (Quest quest : this.zoznamQuestov) {
             if (quest instanceof IQuestKontrolaNPC) {
                 if (!((IQuestKontrolaNPC)quest).maPokracovatVQuestovomRozhovore(this, kontrolaQuestu)) {
                     maPokracovat = false;

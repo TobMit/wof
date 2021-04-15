@@ -1,18 +1,15 @@
 package sk.uniza.fri.wof.hra.questy;
 
 import sk.uniza.fri.wof.hra.Hrac;
-import sk.uniza.fri.wof.prostredie.NpcDialogKontrolaQuestu;
 import sk.uniza.fri.wof.prostredie.predmety.QuestovyPredmet;
 
-public class QuestPrezentacia implements IQuest, IQuestKontrolaMiestnosti, IquestKontrolaPredmet {
+public class QuestPrezentacia extends Quest implements IQuestKontrolaMiestnosti, IquestKontrolaPredmet {
     private final String quest;
-    private boolean jeUkonceny;
     private boolean bolUsbSpawnuty;
 
 
     public QuestPrezentacia(String quest) {
         this.quest = quest;
-        this.jeUkonceny = false;
         this.bolUsbSpawnuty = false;
     }
 
@@ -36,16 +33,11 @@ public class QuestPrezentacia implements IQuest, IQuestKontrolaMiestnosti, Iques
     public void hracPouzilQuestovyPredmet(Hrac hrac, QuestovyPredmet questovyPredmet) {
         if (questovyPredmet.getMeno().equals("usb")) {
             if (hrac.getAktualnaMiestnost().getPopis().startsWith("RA006")) {
-                this.jeUkonceny = true;
+                this.ukonci();
             } else {
                 System.out.println("Aby si mohol nieco robit s usb klucom, musis byt v labaku");
             }
         }
-    }
-
-    @Override
-    public boolean getJeUkonceny() {
-        return this.jeUkonceny;
     }
 
     @Override

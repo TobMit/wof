@@ -1,13 +1,13 @@
 package sk.uniza.fri.wof.prostredie.npc;
 
 import sk.uniza.fri.wof.hra.Hrac;
-import sk.uniza.fri.wof.hra.questy.IQuest;
+import sk.uniza.fri.wof.hra.questy.Quest;
 
 public class NpcDialogQuest implements INpcDialogVrchol {
     private final String repilika;
-    private IQuest quest;
+    private Quest quest;
 
-    public NpcDialogQuest(String repilika, IQuest quest) {
+    public NpcDialogQuest(String repilika, Quest quest) {
         this.repilika = repilika;
         this.quest = quest;
     }
