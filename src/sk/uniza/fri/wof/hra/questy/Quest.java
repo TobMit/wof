@@ -1,6 +1,6 @@
 package sk.uniza.fri.wof.hra.questy;
 
-public class Quest {
+public abstract class Quest {
     private boolean jeUkonceny;
 
     public Quest() {
@@ -10,9 +10,7 @@ public class Quest {
     public boolean getJeUkonceny() {
         return this.jeUkonceny;
     }
-    public String getNazov() {
-        return null;
-    }
+    public abstract String getNazov();
 
     protected void ukonci() {
         this.jeUkonceny = true;
