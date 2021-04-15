@@ -1,6 +1,6 @@
 package sk.uniza.fri.wof.prostredie.npc;
 
-public class Npc {
+public abstract class Npc {
 
     private final String meno;
 
