@@ -3,23 +3,20 @@ package sk.uniza.fri.wof.hra.questy;
 import sk.uniza.fri.wof.hra.Hrac;
 import sk.uniza.fri.wof.prostredie.NpcDialogKontrolaQuestu;
 import sk.uniza.fri.wof.prostredie.predmety.Predmet;
+import sk.uniza.fri.wof.prostredie.predmety.QuestovyPredmet;
 
 public class QuestAspirin extends Quest implements  IQuestKontrolaMiestnosti, IQuestKontrolaNPC {
     private final String nazov;
-    private boolean bolAspirinSpavnuty;
+    private final PredmetSpawner aspirinSpawner;
     public QuestAspirin(String aspirin) {
         this.nazov = aspirin;
+        this.aspirinSpawner = new PredmetSpawner("Wc", new QuestovyPredmet("Aspirin"));
     }
 
 
     @Override
     public void hracVosielDoMiestnosti(Hrac hrac) {
-        if (hrac.getAktualnaMiestnost().getPopis().startsWith("WC")) {
-            if (!this.bolAspirinSpavnuty) {
-                hrac.getAktualnaMiestnost().polozPredmet(new Predmet("aspirin"));
-                this.bolAspirinSpavnuty = true;
-            }
-        }
+        this.aspirinSpawner.spavniAkTreba(hrac);
     }
 
     @Override

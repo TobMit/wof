@@ -19,8 +19,8 @@ import sk.uniza.fri.wof.prostredie.npc.NpcReferentka;
 public class ZoznamPrikazov {
     // konstantne pole nazvov prikazov
     private static final String[] PLATNE_PRIKAZY = {
-            "chod", "ukonci", "pomoc", "hovor", "zober", "poloz", "inventar", "pouzi", "nakupuj",
-            "questlog"
+        "chod", "ukonci", "pomoc", "hovor", "zober", "poloz", "inventar", "pouzi", "nakupuj",
+        "questlog"
     };
 
     /**
@@ -106,9 +106,10 @@ public class ZoznamPrikazov {
         String smer = prikaz.getParameter();
 
         // Pokus o opustenie aktualnej miestnosti danym vychodom.
-        if (hrac.chodVSmere(smer)) {
+        try {
+            hrac.chodVSmere(smer);
             hrac.vypisPopisAktualnejMiestnosti();
-        } else {
+        } catch (IllegalArgumentException e) {
             System.out.println("Tam nie je vychod!");
         }
     }

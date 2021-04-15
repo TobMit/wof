@@ -31,11 +31,11 @@ public class Hrac {
         this.aktualnaMiestnost.vypisPopisMiestnosti();
     }
 
-    public boolean chodVSmere(String smer) {
+    public void chodVSmere(String smer) {
         Miestnost novaMiestnost = this.aktualnaMiestnost.getMiestnostVSmere(smer);
 
         if (novaMiestnost == null) {
-            return false;
+            throw new IllegalArgumentException("Nespravny smer");
         }
 
         this.aktualnaMiestnost = novaMiestnost;
@@ -48,7 +48,7 @@ public class Hrac {
 
         this.skontrolujQuesty();
 
-        return true;
+
     }
 
     private void skontrolujQuesty() {
