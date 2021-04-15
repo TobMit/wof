@@ -4,7 +4,7 @@ import sk.uniza.fri.wof.hra.Hrac;
 import sk.uniza.fri.wof.prostredie.NpcDialogKontrolaQuestu;
 import sk.uniza.fri.wof.prostredie.predmety.QuestovyPredmet;
 
-public class QuestPrezentacia implements IQuest {
+public class QuestPrezentacia implements IQuest, IQuestKontrolaMiestnosti, IquestKontrolaPredmet {
     private final String quest;
     private boolean jeUkonceny;
     private boolean bolUsbSpawnuty;
@@ -53,9 +53,5 @@ public class QuestPrezentacia implements IQuest {
         return this.quest;
     }
 
-    @Override
-    public boolean maPokracovatVQuestovomRozhovore(Hrac hrac, NpcDialogKontrolaQuestu kontrolaQuestu) {
-        return true;
-    }
 
 }

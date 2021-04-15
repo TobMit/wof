@@ -1,6 +1,9 @@
 package sk.uniza.fri.wof.hra;
 
 import sk.uniza.fri.wof.hra.questy.IQuest;
+import sk.uniza.fri.wof.hra.questy.IQuestKontrolaMiestnosti;
+import sk.uniza.fri.wof.hra.questy.IQuestKontrolaNPC;
+import sk.uniza.fri.wof.hra.questy.IquestKontrolaPredmet;
 import sk.uniza.fri.wof.prostredie.*;
 import sk.uniza.fri.wof.prostredie.predmety.IKontorlaPolozenia;
 import sk.uniza.fri.wof.prostredie.predmety.IPredmet;
@@ -38,7 +41,9 @@ public class Hrac {
         this.aktualnaMiestnost = novaMiestnost;
 
         for (IQuest quest : zoznamQuestov) {
-            quest.hracVosielDoMiestnosti(this);
+            if (quest instanceof IQuestKontrolaMiestnosti) {
+                ((IQuestKontrolaMiestnosti)quest).hracVosielDoMiestnosti(this);
+            }
         }
 
         this.skontrolujQuesty();
@@ -133,7 +138,9 @@ public class Hrac {
 
     public void poziQusetovyPredmet(QuestovyPredmet questovyPredmet) {
         for (IQuest quest : zoznamQuestov) {
-            quest.hracPouzilQuestovyPredmet(this, questovyPredmet);
+            if (quest instanceof IquestKontrolaPredmet) {
+                ((IquestKontrolaPredmet)quest).hracPouzilQuestovyPredmet(this, questovyPredmet);
+            }
         }
 
         skontrolujQuesty();
@@ -147,8 +154,10 @@ public class Hrac {
     public boolean maPokracovatVQuestovomRozhovore(NpcDialogKontrolaQuestu kontrolaQuestu) {
         boolean maPokracovat = true;
         for (IQuest quest : this.zoznamQuestov) {
-            if (!quest.maPokracovatVQuestovomRozhovore(this, kontrolaQuestu)) {
-                maPokracovat = false;
+            if (quest instanceof IQuestKontrolaNPC) {
+                if (!((IQuestKontrolaNPC)quest).maPokracovatVQuestovomRozhovore(this, kontrolaQuestu)) {
+                    maPokracovat = false;
+                }
             }
         }
 

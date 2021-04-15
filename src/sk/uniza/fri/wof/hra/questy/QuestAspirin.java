@@ -5,7 +5,7 @@ import sk.uniza.fri.wof.prostredie.NpcDialogKontrolaQuestu;
 import sk.uniza.fri.wof.prostredie.predmety.Predmet;
 import sk.uniza.fri.wof.prostredie.predmety.QuestovyPredmet;
 
-public class QuestAspirin implements IQuest {
+public class QuestAspirin implements IQuest, IQuestKontrolaMiestnosti, IQuestKontrolaNPC {
     private final String nazov;
     private boolean jeUkonceny;
     private boolean bolAspirinSpavnuty;
@@ -25,10 +25,6 @@ public class QuestAspirin implements IQuest {
         }
     }
 
-    @Override
-    public void hracPouzilQuestovyPredmet(Hrac hrac, QuestovyPredmet questovyPredmet) {
-
-    }
 
     @Override
     public boolean getJeUkonceny() {
