@@ -21,8 +21,8 @@ public class Predmet implements IPredmet {
     }
 
     @Override
-    public void pouziSa(Miestnost miestnost, Hrac hrac) {
-        System.out.println("Pouzil si predmet!");
+    public void pouziSa(Miestnost miestnost, Hrac hrac) throws NepuzitelnyPredmetExceptions {
+        throw new NepuzitelnyPredmetExceptions("Predmet sa neda pouzit.");
 
     }
 

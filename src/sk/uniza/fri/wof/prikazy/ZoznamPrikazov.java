@@ -8,6 +8,7 @@ import sk.uniza.fri.wof.prostredie.npc.NpcObchodnik;
 import sk.uniza.fri.wof.prostredie.npc.Npc;
 import sk.uniza.fri.wof.prostredie.npc.NpcDialogove;
 import sk.uniza.fri.wof.prostredie.npc.NpcReferentka;
+import sk.uniza.fri.wof.prostredie.predmety.NepuzitelnyPredmetExceptions;
 
 /**
  * Trieda sk.uniza.fri.wof.prikazy.ZoznamPrikazov udrzuje zoznam nazvov platnych prikazov hry.
@@ -189,6 +190,8 @@ public class ZoznamPrikazov {
             hrac.pouzPredmet(prikaz.getParameter());
         } catch (NenanjdenyPredmetException e) {
             System.out.printf("Predmet %s sa neda pouzit\n", prikaz.getParameter());
+        } catch (NepuzitelnyPredmetExceptions e) {
+            System.out.format("Predmet %s sa neda pouzit.\n", prikaz.getParameter());
         }
 
     }

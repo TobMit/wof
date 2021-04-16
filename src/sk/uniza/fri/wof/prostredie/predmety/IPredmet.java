@@ -4,6 +4,6 @@ import sk.uniza.fri.wof.prostredie.Miestnost;
 
 public interface IPredmet {
     String getMeno();
-    void pouziSa(Miestnost aktualnaMiestnost, Hrac hrac);
+    void pouziSa(Miestnost aktualnaMiestnost, Hrac hrac) throws NepuzitelnyPredmetExceptions;
 
 }

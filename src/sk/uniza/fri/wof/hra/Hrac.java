@@ -7,6 +7,7 @@ import sk.uniza.fri.wof.hra.questy.IquestKontrolaPredmet;
 import sk.uniza.fri.wof.prostredie.*;
 import sk.uniza.fri.wof.prostredie.predmety.IKontorlaPolozenia;
 import sk.uniza.fri.wof.prostredie.predmety.IPredmet;
+import sk.uniza.fri.wof.prostredie.predmety.NepuzitelnyPredmetExceptions;
 import sk.uniza.fri.wof.prostredie.predmety.QuestovyPredmet;
 
 import java.util.ArrayList;
@@ -102,7 +103,7 @@ public class Hrac {
 
     }
 
-    public void pouzPredmet(String nazov) throws NenanjdenyPredmetException {
+    public void pouzPredmet(String nazov) throws NenanjdenyPredmetException, NepuzitelnyPredmetExceptions {
         IPredmet predmet = this.inventar.get(nazov);
         if (predmet == null) {
             throw new NenanjdenyPredmetException("Predmet sa neda pouzit!");
