@@ -18,7 +18,7 @@ public class NpcObchodnik extends Npc {
 
     public void nakupuj(Hrac hrac) {
         Scanner vstup = new Scanner(System.in);
-        while (!inventar.isEmpty()) {
+        while (!this.inventar.isEmpty()) {
             System.out.println("Momentalne mam v ponuke:");
             int no = 1;
             for (IPredmet predmet : this.inventar) {
@@ -34,6 +34,9 @@ public class NpcObchodnik extends Npc {
                 Scanner riadokScanner = new Scanner(riadok);
                 if (riadokScanner.hasNextInt()) {
                     moznost = riadokScanner.nextInt();
+                }
+                if (moznost == 0) {
+                    return;
                 }
             } while (moznost < 0 || moznost > this.inventar.size());
 

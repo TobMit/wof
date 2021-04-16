@@ -1,8 +1,9 @@
 package sk.uniza.fri.wof.prikazy;
 
 import sk.uniza.fri.wof.hra.Hrac;
-import sk.uniza.fri.wof.hra.NeexistujuciPredmetException;
+import sk.uniza.fri.wof.hra.NenanjdenyPredmetException;
 import sk.uniza.fri.wof.hra.NeexistujuciVychodException;
+import sk.uniza.fri.wof.hra.PredmetSaNedaPolozitException;
 import sk.uniza.fri.wof.prostredie.npc.NpcObchodnik;
 import sk.uniza.fri.wof.prostredie.npc.Npc;
 import sk.uniza.fri.wof.prostredie.npc.NpcDialogove;
@@ -160,9 +161,11 @@ public class ZoznamPrikazov {
     private void polozPredmet(Prikaz prikaz, Hrac hrac) {
         try {
             hrac.polozPredmet(prikaz.getParameter());
-            System.out.printf("Polozil si %s%n", prikaz.getParameter());
-        } catch (NeexistujuciPredmetException e) {
-            System.out.printf("Predmet %s sa neda polozit\n", prikaz.getParameter());
+            System.out.printf("Polozil si %s!%n", prikaz.getParameter());
+        } catch (NenanjdenyPredmetException e) {
+            System.out.printf("Predmet %s sa nemas!%n", prikaz.getParameter());
+        } catch (PredmetSaNedaPolozitException e) {
+            System.out.printf("Predmet %s sa neda polozit!%n", prikaz.getParameter());
         }
     }
 
@@ -171,7 +174,7 @@ public class ZoznamPrikazov {
             hrac.zoberPredmet(prikaz.getParameter());
             System.out.printf("Zdvihol si %s%n", prikaz.getParameter());
 
-        } catch (NeexistujuciPredmetException e) {
+        } catch (NenanjdenyPredmetException e) {
             System.out.printf("Predmet %s sa neda zvydhnut\n", prikaz.getParameter());
         }
 
@@ -182,9 +185,12 @@ public class ZoznamPrikazov {
     }
 
     private void pouzi(Prikaz prikaz, Hrac hrac) {
-        if (!hrac.pouzPredmet(prikaz.getParameter())) {
+        try {
+            hrac.pouzPredmet(prikaz.getParameter());
+        } catch (NenanjdenyPredmetException e) {
             System.out.printf("Predmet %s sa neda pouzit\n", prikaz.getParameter());
         }
+
     }
 
     private void nakupujUNpc(Prikaz prikaz, Hrac hrac) {
