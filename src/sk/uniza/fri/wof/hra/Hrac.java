@@ -108,7 +108,7 @@ public class Hrac {
 
     }
 
-    public void pouzPredmet(String nazov) throws NenanjdenyPredmetException, NepuzitelnyPredmetExceptions {
+    public void pouzPredmet(String nazov) throws NenanjdenyPredmetException, NepuzitelnyPredmetExceptions, SmrtException {
         IPredmet predmet = this.getPredmet(nazov);
         predmet.pouziSa(this.aktualnaMiestnost, this);
     }

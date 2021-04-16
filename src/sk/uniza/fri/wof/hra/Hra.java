@@ -51,14 +51,16 @@ public class Hra  {
         // Opakovane nacitava prikazy hraca
         // vykonava ich kym hrac nezada prikaz na ukoncenie hry.
 
-        boolean jeKoniec;
 
-        do {
-            Prikaz prikaz = this.parser.nacitajPrikaz();
-            jeKoniec = this.zoznamPrikazov.vykonajPrikaz(prikaz, this.hrac);
-        } while (!jeKoniec);
+        try {
+            for (;;) {
+                Prikaz prikaz = this.parser.nacitajPrikaz();
+                this.zoznamPrikazov.vykonajPrikaz(prikaz, this.hrac);
+            }
+        } catch (HraKonciException e) {
+            System.out.println("Maj sa fajn.");
+        }
 
-        System.out.println("Maj sa fajn!");
     }
 
     /**

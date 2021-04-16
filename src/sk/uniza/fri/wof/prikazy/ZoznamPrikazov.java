@@ -1,9 +1,11 @@
 package sk.uniza.fri.wof.prikazy;
 
+import sk.uniza.fri.wof.hra.HraKonciException;
 import sk.uniza.fri.wof.hra.Hrac;
 import sk.uniza.fri.wof.hra.NenanjdenyPredmetException;
 import sk.uniza.fri.wof.hra.NeexistujuciVychodException;
 import sk.uniza.fri.wof.hra.PredmetSaNedaPolozitException;
+import sk.uniza.fri.wof.prostredie.SmrtException;
 import sk.uniza.fri.wof.prostredie.npc.NpcObchodnik;
 import sk.uniza.fri.wof.prostredie.npc.Npc;
 import sk.uniza.fri.wof.prostredie.npc.NpcDialogove;
@@ -48,12 +50,11 @@ public class ZoznamPrikazov {
      *
      * @param prikaz prikaz, ktory ma byt vykonany.
      * @param hrac hrac ktory prikaz vykonava
-     * @return true ak prikaz ukonci hru, inak vrati false.
      */
-    public boolean vykonajPrikaz(Prikaz prikaz, Hrac hrac) {
+    public void vykonajPrikaz(Prikaz prikaz, Hrac hrac) throws HraKonciException {
         if (prikaz.jeNeznamy()) {
             System.out.println("Nerozumiem, co mas na mysli...");
-            return false;
+            return ;
         }
 
         String nazovPrikazu = prikaz.getNazov();
@@ -61,35 +62,36 @@ public class ZoznamPrikazov {
         switch (nazovPrikazu) {
             case "pomoc":
                 this.vypisNapovedu();
-                return false;
+                break;
             case "chod":
                 this.chodDoMiestnosti(prikaz, hrac);
-                return false;
+                break;
             case "ukonci":
-                return this.ukonciHru(prikaz);
+                this.ukonciHru(prikaz);
+                break;
             case "hovor":
                 this.hovorSNpc(prikaz, hrac);
-                return false;
+                break;
             case "zober":
                 this.zoberPredmet(prikaz, hrac);
-                return false;
+                break;
             case "poloz":
                 this.polozPredmet(prikaz, hrac);
-                return false;
+                break;
             case "inventar":
                 this.zobrazInventar(hrac);
-                return false;
+                break;
             case "pouzi":
                 this.pouzi(prikaz, hrac);
-                return false;
+                break;
             case "nakupuj":
                 this.nakupujUNpc(prikaz, hrac);
-                return false;
+                break;
             case "questlog":
                 this.zobrazQuestlog(prikaz, hrac);
-                return false;
+                break;
             default:
-                return false;
+                break;
         }
     }
 
@@ -134,15 +136,13 @@ public class ZoznamPrikazov {
      * Skotroluje cely prikaz a zisti, ci je naozaj koniec hry.
      * sk.uniza.fri.wof.prikazy.Prikaz ukoncenia nema parameter.
      *
-     * @return true, ak prikaz konci hru, inak false.
      * @param prikaz prikaz, ktory sa vykonava
      */
-    private boolean ukonciHru(Prikaz prikaz) {
+    private void ukonciHru(Prikaz prikaz) throws HraKonciException {
         if (prikaz.maParameter()) {
             System.out.println("Ukonci, co?");
-            return false;
         } else {
-            return true;
+            throw new HraKonciException("Hra skonci.");
         }
     }
 
@@ -192,6 +192,9 @@ public class ZoznamPrikazov {
             System.out.printf("Predmet %s nemas v inventary.\n", prikaz.getParameter());
         } catch (NepuzitelnyPredmetExceptions e) {
             System.out.format("Predmet %s sa neda pouzit.\n", prikaz.getParameter());
+        } catch (SmrtException e) {
+            System.out.println("Zomer si.");
+            System.exit(0);
         }
 
     }

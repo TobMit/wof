@@ -94,6 +94,7 @@ public class Prostredie {
         this.zoznamMiestnosti.get("chodbaB").nastavVychod("zapad", this.zoznamMiestnosti.get("chillZone"));
         this.zoznamMiestnosti.get("chillZone").nastavVychod("vychod", this.zoznamMiestnosti.get("chodbaB"));
         this.zoznamMiestnosti.get("chodbaB").nastavVychod("sever", this.zoznamMiestnosti.get("vestibula"));
+        this.zoznamMiestnosti.get("chodbaB").polozPredmet(new PredmetGranat("granat"));
 
         //chodbaA
         this.zoznamMiestnosti.get("chodbaA").nastavVychod("juh", this.zoznamMiestnosti.get("vestibula"));
