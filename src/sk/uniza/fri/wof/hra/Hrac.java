@@ -84,12 +84,17 @@ public class Hrac {
         this.inventar.put(predmet.getMeno(), predmet);
     }
 
-    public void polozPredmet(String nazov) throws NenanjdenyPredmetException, PredmetSaNedaPolozitException {
+    public IPredmet getPredmet(String nazov) throws NenanjdenyPredmetException {
         IPredmet predmet = this.inventar.get(nazov);
-
         if (predmet == null) {
-            throw new NenanjdenyPredmetException("Nemáš taky predmet");
+            throw new NenanjdenyPredmetException("Predmet sa neda pouzit!");
         }
+
+        return predmet;
+    }
+
+    public void polozPredmet(String nazov) throws NenanjdenyPredmetException, PredmetSaNedaPolozitException {
+        IPredmet predmet = this.getPredmet(nazov);
 
         if (predmet instanceof IKontorlaPolozenia) {
             if (!((IKontorlaPolozenia)predmet).getDaSaPolozit()) {
@@ -104,10 +109,7 @@ public class Hrac {
     }
 
     public void pouzPredmet(String nazov) throws NenanjdenyPredmetException, NepuzitelnyPredmetExceptions {
-        IPredmet predmet = this.inventar.get(nazov);
-        if (predmet == null) {
-            throw new NenanjdenyPredmetException("Predmet sa neda pouzit!");
-        }
+        IPredmet predmet = this.getPredmet(nazov);
         predmet.pouziSa(this.aktualnaMiestnost, this);
     }
 

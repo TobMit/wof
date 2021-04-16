@@ -189,7 +189,7 @@ public class ZoznamPrikazov {
         try {
             hrac.pouzPredmet(prikaz.getParameter());
         } catch (NenanjdenyPredmetException e) {
-            System.out.printf("Predmet %s sa neda pouzit\n", prikaz.getParameter());
+            System.out.printf("Predmet %s nemas v inventary.\n", prikaz.getParameter());
         } catch (NepuzitelnyPredmetExceptions e) {
             System.out.format("Predmet %s sa neda pouzit.\n", prikaz.getParameter());
         }
