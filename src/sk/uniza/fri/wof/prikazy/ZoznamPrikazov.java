@@ -1,6 +1,8 @@
 package sk.uniza.fri.wof.prikazy;
 
 import sk.uniza.fri.wof.hra.Hrac;
+import sk.uniza.fri.wof.hra.NeexistujuciPredmetException;
+import sk.uniza.fri.wof.hra.NeexistujuciVychodException;
 import sk.uniza.fri.wof.prostredie.npc.NpcObchodnik;
 import sk.uniza.fri.wof.prostredie.npc.Npc;
 import sk.uniza.fri.wof.prostredie.npc.NpcDialogove;
@@ -109,7 +111,7 @@ public class ZoznamPrikazov {
         try {
             hrac.chodVSmere(smer);
             hrac.vypisPopisAktualnejMiestnosti();
-        } catch (IllegalArgumentException e) {
+        } catch (NeexistujuciVychodException e) {
             System.out.println("Tam nie je vychod!");
         }
     }
@@ -156,18 +158,20 @@ public class ZoznamPrikazov {
     }
 
     private void polozPredmet(Prikaz prikaz, Hrac hrac) {
-        if (hrac.polozPredmet(prikaz.getParameter())) {
+        try {
+            hrac.polozPredmet(prikaz.getParameter());
             System.out.printf("Polozil si %s%n", prikaz.getParameter());
-        } else {
+        } catch (NeexistujuciPredmetException e) {
             System.out.printf("Predmet %s sa neda polozit\n", prikaz.getParameter());
         }
-
     }
 
     private void zoberPredmet(Prikaz prikaz, Hrac hrac) {
-        if (hrac.zoberPredmet(prikaz.getParameter())) {
+        try {
+            hrac.zoberPredmet(prikaz.getParameter());
             System.out.printf("Zdvihol si %s%n", prikaz.getParameter());
-        } else {
+
+        } catch (NeexistujuciPredmetException e) {
             System.out.printf("Predmet %s sa neda zvydhnut\n", prikaz.getParameter());
         }
 

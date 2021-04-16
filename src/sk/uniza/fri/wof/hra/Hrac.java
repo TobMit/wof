@@ -31,11 +31,11 @@ public class Hrac {
         this.aktualnaMiestnost.vypisPopisMiestnosti();
     }
 
-    public void chodVSmere(String smer) {
+    public void chodVSmere(String smer) throws NeexistujuciVychodException {
         Miestnost novaMiestnost = this.aktualnaMiestnost.getMiestnostVSmere(smer);
 
         if (novaMiestnost == null) {
-            throw new IllegalArgumentException("Nespravny smer");
+            throw new NeexistujuciVychodException("Nespravny smer");
         }
 
         this.aktualnaMiestnost = novaMiestnost;
@@ -75,35 +75,34 @@ public class Hrac {
     }
 
 
-    public boolean zoberPredmet(String nazov) {
+    public void zoberPredmet(String nazov) throws NeexistujuciPredmetException {
         IPredmet predmet = this.aktualnaMiestnost.zoberPredmet(nazov);
         if (predmet == null) {
-            return false;
+            throw new NeexistujuciPredmetException("Nemáš taky predmet");
         }
         this.inventar.put(predmet.getMeno(), predmet);
-        return true;
     }
 
-    public boolean polozPredmet(String nazov) {
+    public void polozPredmet(String nazov) throws NeexistujuciPredmetException {
         IPredmet predmet = this.inventar.get(nazov);
 
         if (predmet == null) {
-            return false;
+            throw new NeexistujuciPredmetException("Nemáš taky predmet");
         }
 
         if (predmet instanceof IKontorlaPolozenia) {
             if (!((IKontorlaPolozenia)predmet).getDaSaPolozit()) {
-                return false;
+                //return false;
             }
         }
 
         this.inventar.remove(nazov);
 
         this.aktualnaMiestnost.polozPredmet(predmet);
-        return true;
+        //return true;
     }
 
-    public boolean pouzPredmet(String nazov) {
+    public void pouzPredmet(String nazov) {
         IPredmet predmet = this.inventar.get(nazov);
         if (predmet == null) {
             return false;
