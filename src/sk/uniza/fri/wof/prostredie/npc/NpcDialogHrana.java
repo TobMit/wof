@@ -1,6 +1,8 @@
 package sk.uniza.fri.wof.prostredie.npc;
 
-public class NpcDialogHrana {
+import java.io.Serializable;
+
+public class NpcDialogHrana implements Serializable {
     private final String replikaHraca;
     private final INpcDialogVrchol vystupnyVrchol;
 

@@ -3,6 +3,7 @@ package sk.uniza.fri.wof.prostredie;
 import sk.uniza.fri.wof.prostredie.npc.Npc;
 import sk.uniza.fri.wof.prostredie.predmety.IPredmet;
 
+import java.io.Serializable;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -18,7 +19,7 @@ import java.util.TreeMap;
  * @author  lokalizacia: Lubomir Sadlon, Jan Janech
  * @version 2012.02.21
  */
-public class Miestnost {
+public class Miestnost implements Serializable {
     private final String popisMiestnosti;
     // prvý je smer a ciel
     private final TreeMap<String, Miestnost> vychody;

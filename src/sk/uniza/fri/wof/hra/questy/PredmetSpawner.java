@@ -3,7 +3,9 @@ package sk.uniza.fri.wof.hra.questy;
 import sk.uniza.fri.wof.hra.Hrac;
 import sk.uniza.fri.wof.prostredie.predmety.QuestovyPredmet;
 
-public class PredmetSpawner {
+import java.io.Serializable;
+
+public class PredmetSpawner implements Serializable {
     private final String nazovMiestnosti;
     private final QuestovyPredmet predmet;
     private boolean bolSpawnuty;

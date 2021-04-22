@@ -17,6 +17,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  * Trieda sk.uniza.fri.wof.prikazy.ZoznamPrikazov udrzuje zoznam nazvov platnych prikazov hry.
@@ -229,21 +231,26 @@ public class ZoznamPrikazov {
 
     private void ulozPOziciu(Prikaz prikaz, Hrac hrac) {
         File saveSubor = new File(prikaz.getParameter() + ".wof");
-        try (FileOutputStream save = new FileOutputStream(saveSubor)){
+        try (ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream(saveSubor))) {
+            save.writeObject(hrac);
+            System.out.println("Ulozil si hru.");
         } catch (FileNotFoundException e) {
             System.out.println("Nepodarilo sa ulozit hru - asi zly nazov.");
         } catch (IOException e) {
             System.out.println("Nepodarilo sa ulozit save.");
+            e.printStackTrace(System.out);
         }
 
     }
 
     private void nacitajPoziciu(Prikaz prikaz, Hrac hrac) {
         File saveSubor = new File(prikaz.getParameter() + ".wof");
-        try (FileInputStream save = new FileInputStream(saveSubor)) {
+        try (ObjectInputStream save = new ObjectInputStream(new FileInputStream(saveSubor))) {
+            Hrac nacitanyHrac = (Hrac)save.readObject();
+            hrac.nahradUdajeZoSave(nacitanyHrac);
         } catch (FileNotFoundException e) {
             System.out.println("Nepodarilo sa otvorit save - asi neexistuje.");
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             System.out.println("Nepodarilo sa nacitat save.");
         }
 

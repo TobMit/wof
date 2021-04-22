@@ -10,10 +10,11 @@ import sk.uniza.fri.wof.prostredie.predmety.IPredmet;
 import sk.uniza.fri.wof.prostredie.predmety.NepuzitelnyPredmetExceptions;
 import sk.uniza.fri.wof.prostredie.predmety.QuestovyPredmet;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class Hrac {
+public class Hrac implements Serializable {
     private final TreeMap<String, IPredmet> inventar;
     private final ArrayList<Quest> zoznamQuestov;
     private Miestnost aktualnaMiestnost;
@@ -167,5 +168,13 @@ public class Hrac {
     }
     public void odstranPredmet(String nazov) {
         this.inventar.remove(nazov);
+    }
+
+    public void nahradUdajeZoSave(Hrac nacitanyHrac) {
+        this.aktualnaMiestnost = nacitanyHrac.aktualnaMiestnost;
+        this.inventar.clear();
+        this.inventar.putAll(nacitanyHrac.inventar);
+        this.zoznamQuestov.clear();
+        this.zoznamQuestov.addAll(nacitanyHrac.zoznamQuestov);
     }
 }

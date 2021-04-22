@@ -3,7 +3,10 @@ import sk.uniza.fri.wof.hra.Hrac;
 import sk.uniza.fri.wof.prostredie.Miestnost;
 import sk.uniza.fri.wof.prostredie.SmrtException;
 
-public interface IPredmet {
+import java.io.Serializable;
+
+// rozširenei interface
+public interface IPredmet extends Serializable {
     String getMeno();
     void pouziSa(Miestnost aktualnaMiestnost, Hrac hrac) throws NepuzitelnyPredmetExceptions, SmrtException;
 

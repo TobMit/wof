@@ -7,9 +7,10 @@ import sk.uniza.fri.wof.prostredie.predmety.Predmet;
 import sk.uniza.fri.wof.prostredie.predmety.PredmetPortalGun;
 import sk.uniza.fri.wof.prostredie.predmety.PredmetRusko;
 
+import java.io.Serializable;
 import java.util.TreeMap;
 
-public class Prostredie {
+public class Prostredie implements Serializable {
     private final Miestnost startovaciaMiestnost;
     private final TreeMap<String, Miestnost> zoznamMiestnosti;
 
