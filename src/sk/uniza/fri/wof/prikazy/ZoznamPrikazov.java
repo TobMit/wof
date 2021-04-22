@@ -12,6 +12,12 @@ import sk.uniza.fri.wof.prostredie.npc.NpcDialogove;
 import sk.uniza.fri.wof.prostredie.npc.NpcReferentka;
 import sk.uniza.fri.wof.prostredie.predmety.NepuzitelnyPredmetExceptions;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 /**
  * Trieda sk.uniza.fri.wof.prikazy.ZoznamPrikazov udrzuje zoznam nazvov platnych prikazov hry.
  * Za ulohu ma rozpoznavat platne prikazy a vykonavat ich.
@@ -26,7 +32,7 @@ public class ZoznamPrikazov {
     // konstantne pole nazvov prikazov
     private static final String[] PLATNE_PRIKAZY = {
         "chod", "ukonci", "pomoc", "hovor", "zober", "poloz", "inventar", "pouzi", "nakupuj",
-        "questlog"
+        "questlog", "save", "load"
     };
 
     /**
@@ -90,10 +96,17 @@ public class ZoznamPrikazov {
             case "questlog":
                 this.zobrazQuestlog(prikaz, hrac);
                 break;
+            case "save":
+                this.ulozPOziciu(prikaz, hrac);
+                break;
+            case "load":
+                this.nacitajPoziciu (prikaz, hrac);
+                break;
             default:
                 break;
         }
     }
+
 
     /**
      * Vykona pokus o prechod do miestnosti urcenej danym smerom.
@@ -213,4 +226,27 @@ public class ZoznamPrikazov {
     private void zobrazQuestlog(Prikaz prikaz, Hrac hrac) {
         hrac.zobrazQuestlog();
     }
+
+    private void ulozPOziciu(Prikaz prikaz, Hrac hrac) {
+        File saveSubor = new File(prikaz.getParameter() + ".wof");
+        try (FileOutputStream save = new FileOutputStream(saveSubor)){
+        } catch (FileNotFoundException e) {
+            System.out.println("Nepodarilo sa ulozit hru - asi zly nazov.");
+        } catch (IOException e) {
+            System.out.println("Nepodarilo sa ulozit save.");
+        }
+
+    }
+
+    private void nacitajPoziciu(Prikaz prikaz, Hrac hrac) {
+        File saveSubor = new File(prikaz.getParameter() + ".wof");
+        try (FileInputStream save = new FileInputStream(saveSubor)) {
+        } catch (FileNotFoundException e) {
+            System.out.println("Nepodarilo sa otvorit save - asi neexistuje.");
+        } catch (IOException e) {
+            System.out.println("Nepodarilo sa nacitat save.");
+        }
+
+    }
+
 }
