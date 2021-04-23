@@ -33,14 +33,14 @@ public class Miestnost {
      * charakterizuje.
      *
      * @param popis text popisu miestnosti.
-     * @param meno meno miestnosti
+     * @param nazov meno miestnosti
      */
-    public Miestnost(String popis, String meno) {
+    public Miestnost(String popis, String nazov) {
         this.popisMiestnosti = popis;
         this.vychody = new TreeMap<>();
         this.npccka = new TreeMap<>();
         this.predmety = new TreeMap<>();
-        this.menoMiestnosti = meno;
+        this.menoMiestnosti = nazov;
     }
 
     public void nastavVychod(String smer, Miestnost ciel) {

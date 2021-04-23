@@ -12,13 +12,7 @@ import sk.uniza.fri.wof.prostredie.npc.NpcDialogove;
 import sk.uniza.fri.wof.prostredie.npc.NpcReferentka;
 import sk.uniza.fri.wof.prostredie.predmety.NepuzitelnyPredmetExceptions;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 /**
  * Trieda sk.uniza.fri.wof.prikazy.ZoznamPrikazov udrzuje zoznam nazvov platnych prikazov hry.
@@ -36,6 +30,9 @@ public class ZoznamPrikazov {
         "chod", "ukonci", "pomoc", "hovor", "zober", "poloz", "inventar", "pouzi", "nakupuj",
         "questlog", "save", "load"
     };
+
+    private static final int SAVE_MAGIC_NUMBER = 0x766f6637;
+    private static final int SAVE_VERSION = 0;
 
     /**
      * Kontroluje, ci nazov v parametri je platny prikaz.
@@ -242,6 +239,19 @@ public class ZoznamPrikazov {
 //            e.printStackTrace(System.out);
 //        }
 
+        File saveSubor = new File(prikaz.getParameter() + ".wof");
+        try (DataOutputStream save = new DataOutputStream(new FileOutputStream(saveSubor))) {
+            save.writeInt(ZoznamPrikazov.SAVE_MAGIC_NUMBER);
+            save.writeInt(ZoznamPrikazov.SAVE_VERSION);
+            hrac.ulozPoziciu(save);
+            System.out.println("Ulozil si hru.");
+        } catch (FileNotFoundException e) {
+            System.out.println("Nepodarilo sa ulozit hru - asi zly nazov.");
+        } catch (IOException e) {
+            System.out.println("Nepodarilo sa ulozit save.");
+            e.printStackTrace(System.out);
+        }
+
     }
 
     private void nacitajPoziciu(Prikaz prikaz, Hrac hrac) {
@@ -255,6 +265,24 @@ public class ZoznamPrikazov {
 //        } catch (IOException | ClassNotFoundException e) {
 //            System.out.println("Nepodarilo sa nacitat save.");
 //        }
+
+        File saveSubor = new File(prikaz.getParameter() + ".wof");
+        try (DataInputStream save = new DataInputStream(new FileInputStream(saveSubor))) {
+            int magicNumber = save.readInt();
+            if (magicNumber != ZoznamPrikazov.SAVE_MAGIC_NUMBER) {
+                System.out.println("Zlý súbor na na čítanie.");
+            }
+            int saveVersion = save.readInt();
+            if (saveVersion > ZoznamPrikazov.SAVE_VERSION) {
+                System.out.println("Subor save je pre novsiu verziu hry.");
+            }
+            hrac.nacitajPoziciu(save);
+            hrac.getAktualnaMiestnost().vypisPopisMiestnosti();
+        } catch (FileNotFoundException e) {
+            System.out.println("Nepodarilo sa otvorit save - asi neexistuje.");
+        } catch (IOException e) {
+            System.out.println("Nepodarilo sa nacitat save.");
+        }
 
     }
 

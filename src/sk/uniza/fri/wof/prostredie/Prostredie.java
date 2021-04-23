@@ -25,7 +25,7 @@ public class Prostredie {
         this.zoznamMiestnosti.put("ic", new Miestnost("IC - informačné centrum", "ic"));
 
         //Miestnosti ktoré sú priamo spojené s chodbou A
-        this.zoznamMiestnosti.put("chodbaA", new Miestnost("Chudba A", "chodbaA"));
+        this.zoznamMiestnosti.put("chodbaA", new Miestnost("Chodba A", "chodbaA"));
         this.zoznamMiestnosti.put("RA006", new Miestnost("RA006", "RA006"));
         this.zoznamMiestnosti.put("WcVChodbeA", new Miestnost("WC - Chodba - A", "WcVChodbeA"));
 
@@ -126,5 +126,9 @@ public class Prostredie {
 
     public void odstranVychod(String nazovPortalu, Miestnost miestnost) {
         this.zoznamMiestnosti.get(miestnost.getMenoMiestnosi()).vymazVychod(nazovPortalu);
+    }
+
+    public Miestnost getMiestnost(String nazovMiestnosti) {
+        return this.zoznamMiestnosti.get(nazovMiestnosti);
     }
 }

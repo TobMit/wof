@@ -10,6 +10,9 @@ import sk.uniza.fri.wof.prostredie.predmety.IPredmet;
 import sk.uniza.fri.wof.prostredie.predmety.NepuzitelnyPredmetExceptions;
 import sk.uniza.fri.wof.prostredie.predmety.QuestovyPredmet;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.TreeMap;
@@ -17,9 +20,11 @@ import java.util.TreeMap;
 public class Hrac {
     private final TreeMap<String, IPredmet> inventar;
     private final ArrayList<Quest> zoznamQuestov;
+    private final Prostredie prostredie;
     private Miestnost aktualnaMiestnost;
 
     public Hrac(Prostredie prostredie) {
+        this.prostredie = prostredie;
         this.aktualnaMiestnost = prostredie.getStartovaciaMiestnost();
         this.inventar = new TreeMap<>();
         this.zoznamQuestov = new ArrayList<>();
@@ -170,11 +175,23 @@ public class Hrac {
         this.inventar.remove(nazov);
     }
 
+    //Pozostatok serializácie
     public void nahradUdajeZoSave(Hrac nacitanyHrac) {
         this.aktualnaMiestnost = nacitanyHrac.aktualnaMiestnost;
         this.inventar.clear();
         this.inventar.putAll(nacitanyHrac.inventar);
         this.zoznamQuestov.clear();
         this.zoznamQuestov.addAll(nacitanyHrac.zoznamQuestov);
+    }
+
+    public void ulozPoziciu(DataOutputStream save) throws IOException {
+        save.writeUTF(this.aktualnaMiestnost.getMenoMiestnosi());
+
+    }
+
+    public void nacitajPoziciu(DataInputStream save) throws IOException {
+        String miestnost = save.readUTF();
+        this.aktualnaMiestnost = this.prostredie.getMiestnost(miestnost);
+
     }
 }
