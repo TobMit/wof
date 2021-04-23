@@ -14,7 +14,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class Hrac implements Serializable {
+public class Hrac {
     private final TreeMap<String, IPredmet> inventar;
     private final ArrayList<Quest> zoznamQuestov;
     private Miestnost aktualnaMiestnost;

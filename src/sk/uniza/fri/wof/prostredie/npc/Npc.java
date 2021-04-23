@@ -2,7 +2,7 @@ package sk.uniza.fri.wof.prostredie.npc;
 
 import java.io.Serializable;
 
-public abstract class Npc implements Serializable {
+public abstract class Npc {
 
     private final String meno;
 

@@ -5,7 +5,7 @@ import sk.uniza.fri.wof.prostredie.predmety.QuestovyPredmet;
 
 import java.io.Serializable;
 
-public class PredmetSpawner implements Serializable {
+public class PredmetSpawner {
     private final String nazovMiestnosti;
     private final QuestovyPredmet predmet;
     private boolean bolSpawnuty;

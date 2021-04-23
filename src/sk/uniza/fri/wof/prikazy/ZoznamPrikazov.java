@@ -230,29 +230,31 @@ public class ZoznamPrikazov {
     }
 
     private void ulozPOziciu(Prikaz prikaz, Hrac hrac) {
-        File saveSubor = new File(prikaz.getParameter() + ".wof");
-        try (ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream(saveSubor))) {
-            save.writeObject(hrac);
-            System.out.println("Ulozil si hru.");
-        } catch (FileNotFoundException e) {
-            System.out.println("Nepodarilo sa ulozit hru - asi zly nazov.");
-        } catch (IOException e) {
-            System.out.println("Nepodarilo sa ulozit save.");
-            e.printStackTrace(System.out);
-        }
+        //Serializácia
+//        File saveSubor = new File(prikaz.getParameter() + ".wof");
+//        try (ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream(saveSubor))) {
+//            save.writeObject(hrac);
+//            System.out.println("Ulozil si hru.");
+//        } catch (FileNotFoundException e) {
+//            System.out.println("Nepodarilo sa ulozit hru - asi zly nazov.");
+//        } catch (IOException e) {
+//            System.out.println("Nepodarilo sa ulozit save.");
+//            e.printStackTrace(System.out);
+//        }
 
     }
 
     private void nacitajPoziciu(Prikaz prikaz, Hrac hrac) {
-        File saveSubor = new File(prikaz.getParameter() + ".wof");
-        try (ObjectInputStream save = new ObjectInputStream(new FileInputStream(saveSubor))) {
-            Hrac nacitanyHrac = (Hrac)save.readObject();
-            hrac.nahradUdajeZoSave(nacitanyHrac);
-        } catch (FileNotFoundException e) {
-            System.out.println("Nepodarilo sa otvorit save - asi neexistuje.");
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Nepodarilo sa nacitat save.");
-        }
+        //Serializácia
+//        File saveSubor = new File(prikaz.getParameter() + ".wof");
+//        try (ObjectInputStream save = new ObjectInputStream(new FileInputStream(saveSubor))) {
+//            Hrac nacitanyHrac = (Hrac)save.readObject();
+//            hrac.nahradUdajeZoSave(nacitanyHrac);
+//        } catch (FileNotFoundException e) {
+//            System.out.println("Nepodarilo sa otvorit save - asi neexistuje.");
+//        } catch (IOException | ClassNotFoundException e) {
+//            System.out.println("Nepodarilo sa nacitat save.");
+//        }
 
     }
 

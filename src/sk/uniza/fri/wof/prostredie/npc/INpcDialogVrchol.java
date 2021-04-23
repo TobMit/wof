@@ -4,6 +4,6 @@ import sk.uniza.fri.wof.hra.Hrac;
 
 import java.io.Serializable;
 
-public interface INpcDialogVrchol extends Serializable {
+public interface INpcDialogVrchol {
     INpcDialogVrchol vykonaj(Hrac hrac);
 }

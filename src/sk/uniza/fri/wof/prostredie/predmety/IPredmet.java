@@ -6,7 +6,7 @@ import sk.uniza.fri.wof.prostredie.SmrtException;
 import java.io.Serializable;
 
 // rozširenei interface
-public interface IPredmet extends Serializable {
+public interface IPredmet {
     String getMeno();
     void pouziSa(Miestnost aktualnaMiestnost, Hrac hrac) throws NepuzitelnyPredmetExceptions, SmrtException;
 
