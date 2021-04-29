@@ -37,6 +37,7 @@ public class PredmetPortalGun implements IPredmet, IKontorlaPolozenia {
 
     @Override
     public void pouziSa(Miestnost miestnost, Hrac hrac) {
+        /*
         // 1 použie
         if (!this.cerveny) {
             System.out.println("Polozil si cerveny");
@@ -62,7 +63,7 @@ public class PredmetPortalGun implements IPredmet, IKontorlaPolozenia {
             return;
         }
 
-
+        */
 
 
 

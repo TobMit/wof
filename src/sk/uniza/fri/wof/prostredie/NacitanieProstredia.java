@@ -9,6 +9,8 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 public class NacitanieProstredia {
+
+    private Miestnost startovaciaMiestnost;
     private ArrayList<String> riadkyVSubore;
     private final TreeMap<String, Miestnost> zoznamMiestnosti;
     public NacitanieProstredia() {
@@ -38,14 +40,11 @@ public class NacitanieProstredia {
             String[] slovaNacitania = nacitanie.split(" ");
             // ošetruje Miestnosti
             if (slovaNacitania[0].equals("Miestnost")) {
-                //this.zoznamMiestnosti.put(slovaNacitania[1] + slovaNacitania[2], new Miestnost());
-                this.zoznamMiestnosti.put(nacitanie.replace(slovaNacitania[0] + " ", ""), new Miestnost(this.riadkyVSubore.get(sucastnyRiadok + 1), nacitanie.replace(slovaNacitania[0] + " ", "")));
-                //System.out.println(nacitanie.replace(slovaNacitania[0] + " ", ""));
+                this.zoznamMiestnosti.put(nacitanie.replace(slovaNacitania[0] + " ", ""), new Miestnost(this.riadkyVSubore.get(sucastnyRiadok), nacitanie.replace(slovaNacitania[0] + " ", "")));
             }
         }
-
-        System.out.println(this.zoznamMiestnosti);
         Miestnost aktualnaMiestnost = null;
+        this.startovaciaMiestnost = null;
 
         for (String nacitanie : this.riadkyVSubore) {
             sucastnyRiadok++;
@@ -65,6 +64,9 @@ public class NacitanieProstredia {
             // ošetruje nový riadok
             else if (nacitanie.equals("")) {
                 continue;
+            }
+            else if (nacitanie.equals("Start")) {
+                this.startovaciaMiestnost = aktualnaMiestnost;
             }
             // ošetruje popis
             else {

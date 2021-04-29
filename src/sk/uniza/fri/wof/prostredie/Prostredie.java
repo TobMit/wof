@@ -2,20 +2,30 @@ package sk.uniza.fri.wof.prostredie;
 
 import sk.uniza.fri.wof.hra.questy.QuestAspirin;
 import sk.uniza.fri.wof.hra.questy.QuestPrezentacia;
-import sk.uniza.fri.wof.prostredie.npc.*;
+import sk.uniza.fri.wof.prostredie.npc.NpcDialogHrana;
+import sk.uniza.fri.wof.prostredie.npc.NpcDialogQuest;
+import sk.uniza.fri.wof.prostredie.npc.NpcDialogVrchol;
+import sk.uniza.fri.wof.prostredie.npc.NpcDialogVstup;
+import sk.uniza.fri.wof.prostredie.npc.NpcDialogove;
+import sk.uniza.fri.wof.prostredie.npc.NpcObchodnik;
+import sk.uniza.fri.wof.prostredie.npc.NpcReferentka;
 import sk.uniza.fri.wof.prostredie.predmety.IPredmet;
 import sk.uniza.fri.wof.prostredie.predmety.Predmet;
 import sk.uniza.fri.wof.prostredie.predmety.PredmetPortalGun;
 import sk.uniza.fri.wof.prostredie.predmety.PredmetRusko;
 
-import java.io.Serializable;
 import java.util.TreeMap;
 
 public class Prostredie {
+    private final NacitanieProstredia nacitavac;
     private final Miestnost startovaciaMiestnost;
     private final TreeMap<String, Miestnost> zoznamMiestnosti;
 
     public Prostredie() {
+        this.nacitavac = new NacitanieProstredia();
+
+        this.zoznamMiestnosti = this.nacitavac.getZoznam();
+        this.startovaciaMiestnost = this.nacitavac.getStartovaciaMiestnost();
 
 
         this.zoznamMiestnosti = new TreeMap<>();
@@ -49,7 +59,7 @@ public class Prostredie {
         //Miestnost labak = new Miestnost("pocitacove laboratorium");
         //Miestnost kancelaria = new Miestnost("kancelaria spravcu pocitacoveho laboratoria");
 
-
+/*
         // inicializacia miestnosti = nastavenie vychodov
         this.zoznamMiestnosti.get("terasa").nastavVychod("vychod", this.zoznamMiestnosti.get("vestibula"));
 
@@ -79,7 +89,7 @@ public class Prostredie {
         NpcDialogVstup korenDialogovehoStromuVratnicka = new NpcDialogVstup("Ahoj, ja som tu nejaka vratnicka. A ty si?", uvod);
         NpcDialogKontrolaQuestu kontrolaAspirinu = new NpcDialogKontrolaQuestu("aspirin", korenDialogovehoStromuVratnicka);
         NpcDialogQuest korenDialogovehoStromuUcitel = new NpcDialogQuest("Uz meskas na prezentaciu", new QuestPrezentacia("prezentacia"));
-        this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcDialogove("ucitel", korenDialogovehoStromuUcitel));
+        /*this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcDialogove("ucitel", korenDialogovehoStromuUcitel));
 
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcDialogove("vratnicka", kontrolaAspirinu));
 
@@ -116,21 +126,16 @@ public class Prostredie {
         this.zoznamMiestnosti.get("WcVChodbeC").nastavVychod("vychod", this.zoznamMiestnosti.get("chodbaC"));
         this.zoznamMiestnosti.get("chodbaC").nastavVychod("juh", this.zoznamMiestnosti.get("aula"));
         this.zoznamMiestnosti.get("aula").nastavVychod("sever", this.zoznamMiestnosti.get("chodbaC"));
+    */
 
+//    public void pridajVychod(String nazovPortalu, Miestnost miestnost, Miestnost miestnostPolozenia) {
+//        this.zoznamMiestnosti.get(miestnostPolozenia.getMenoMiestnosi()).nastavVychod(nazovPortalu, this.zoznamMiestnosti.get(miestnost.getMenoMiestnosi()));
+//    }
+//
+//    public void odstranVychod(String nazovPortalu, Miestnost miestnost) {
+//        this.zoznamMiestnosti.get(miestnost.getMenoMiestnosi()).vymazVychod(nazovPortalu);
+//    }
     }
-
-    public Miestnost getStartovaciaMiestnost() {
-        return this.startovaciaMiestnost;
-    }
-
-    public void pridajVychod(String nazovPortalu, Miestnost miestnost, Miestnost miestnostPolozenia) {
-        this.zoznamMiestnosti.get(miestnostPolozenia.getMenoMiestnosi()).nastavVychod(nazovPortalu, this.zoznamMiestnosti.get(miestnost.getMenoMiestnosi()));
-    }
-
-    public void odstranVychod(String nazovPortalu, Miestnost miestnost) {
-        this.zoznamMiestnosti.get(miestnost.getMenoMiestnosi()).vymazVychod(nazovPortalu);
-    }
-
     public Miestnost getMiestnost(String nazovMiestnosti) {
         return this.zoznamMiestnosti.get(nazovMiestnosti);
     }
