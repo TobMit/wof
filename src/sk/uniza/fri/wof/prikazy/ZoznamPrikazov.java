@@ -32,7 +32,7 @@ public class ZoznamPrikazov {
     };
 
     private static final int SAVE_MAGIC_NUMBER = 0x766f6637;
-    private static final int SAVE_VERSION = 0;
+    private static final int SAVE_VERSION = 2;
 
     /**
      * Kontroluje, ci nazov v parametri je platny prikaz.
@@ -276,7 +276,7 @@ public class ZoznamPrikazov {
             if (saveVersion > ZoznamPrikazov.SAVE_VERSION) {
                 System.out.println("Subor save je pre novsiu verziu hry.");
             }
-            hrac.nacitajPoziciu(save);
+            hrac.nacitajPoziciu(save, saveVersion);
             hrac.getAktualnaMiestnost().vypisPopisMiestnosti();
         } catch (FileNotFoundException e) {
             System.out.println("Nepodarilo sa otvorit save - asi neexistuje.");

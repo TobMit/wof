@@ -3,6 +3,7 @@ package sk.uniza.fri.wof.prostredie;
 import sk.uniza.fri.wof.hra.questy.QuestAspirin;
 import sk.uniza.fri.wof.hra.questy.QuestPrezentacia;
 import sk.uniza.fri.wof.prostredie.npc.*;
+import sk.uniza.fri.wof.prostredie.predmety.IPredmet;
 import sk.uniza.fri.wof.prostredie.predmety.Predmet;
 import sk.uniza.fri.wof.prostredie.predmety.PredmetPortalGun;
 import sk.uniza.fri.wof.prostredie.predmety.PredmetRusko;
@@ -82,20 +83,20 @@ public class Prostredie {
 
         NpcDialogVrchol korenDialogovehoStromuBufetarka = new NpcDialogVrchol("Zatial nemas naprogramovane predmety, tak sa s tebou nebavim");
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcDialogove("bufetarka", korenDialogovehoStromuBufetarka));
-        this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcObchodnik("jozo", new PredmetRusko(), new Predmet("index"), new Predmet("borovicka")));
+        this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcObchodnik("jozo", this.newPredmet("rusko"), this.newPredmet("index"), this.newPredmet("borovicka")));
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcReferentka("referentka", this.zoznamMiestnosti, this.startovaciaMiestnost.getMenoMiestnosi()));
 
 
         //vestibula.polozPredmet(new PredmetRusko());
-        this.zoznamMiestnosti.get("vestibula").polozPredmet(new Predmet("index"));
+        this.zoznamMiestnosti.get("vestibula").polozPredmet(this.newPredmet("index"));
         //this.zoznamMiestnosti.get("vestibula").polozPredmet(new PredmetPortalGun("TatraTea", "Slovenská verzia PortalGan", this));
-        this.zoznamMiestnosti.get("vestibula").polozPredmet(new PredmetPortalGun("TatraTea", "Slovenská verzia PortalGan", this));
+        this.zoznamMiestnosti.get("vestibula").polozPredmet(this.newPredmet("TatraTea"));
 
         //chodbaB
         this.zoznamMiestnosti.get("chodbaB").nastavVychod("zapad", this.zoznamMiestnosti.get("chillZone"));
         this.zoznamMiestnosti.get("chillZone").nastavVychod("vychod", this.zoznamMiestnosti.get("chodbaB"));
         this.zoznamMiestnosti.get("chodbaB").nastavVychod("sever", this.zoznamMiestnosti.get("vestibula"));
-        this.zoznamMiestnosti.get("chodbaB").polozPredmet(new PredmetGranat("granat"));
+        this.zoznamMiestnosti.get("chodbaB").polozPredmet(this.newPredmet("granat"));
 
         //chodbaA
         this.zoznamMiestnosti.get("chodbaA").nastavVychod("juh", this.zoznamMiestnosti.get("vestibula"));
@@ -130,5 +131,18 @@ public class Prostredie {
 
     public Miestnost getMiestnost(String nazovMiestnosti) {
         return this.zoznamMiestnosti.get(nazovMiestnosti);
+    }
+
+    public IPredmet newPredmet(String nazov) {
+        switch (nazov) {
+            case "granat":
+                return new PredmetGranat(nazov);
+            case "TatraTea":
+                return new PredmetPortalGun(nazov, this);
+            case "rusko":
+                return new PredmetRusko();
+            default:
+                return new Predmet(nazov);
+        }
     }
 }

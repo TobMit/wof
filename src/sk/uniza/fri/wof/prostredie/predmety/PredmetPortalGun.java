@@ -4,6 +4,9 @@ import sk.uniza.fri.wof.hra.Hrac;
 import sk.uniza.fri.wof.prostredie.Miestnost;
 import sk.uniza.fri.wof.prostredie.Prostredie;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+
 
 public class PredmetPortalGun implements IPredmet, IKontorlaPolozenia {
     private final String nazov;
@@ -15,10 +18,10 @@ public class PredmetPortalGun implements IPredmet, IKontorlaPolozenia {
     private  Miestnost miestnostModry;
     private  Miestnost miestnostCerveny;
 
-    public PredmetPortalGun(String nazov, String popis, Prostredie prostredie) {
+    public PredmetPortalGun(String nazov, Prostredie prostredie) {
 
         this.nazov = nazov;
-        this.popis = popis;
+        this.popis = "Slovenska verzia PorgalGun";
         this.prostredie = prostredie;
         this.modry = false;
         this.cerveny = false;
@@ -66,7 +69,17 @@ public class PredmetPortalGun implements IPredmet, IKontorlaPolozenia {
     }
 
     @Override
+    public void ulozPoziciu(DataOutputStream save) {
+
+    }
+
+    @Override
     public boolean getDaSaPolozit() {
         return true;
+    }
+
+    @Override
+    public void nacitajPoziciu(DataInputStream save, int saveVersion) {
+
     }
 }

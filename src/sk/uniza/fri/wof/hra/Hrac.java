@@ -186,12 +186,31 @@ public class Hrac {
 
     public void ulozPoziciu(DataOutputStream save) throws IOException {
         save.writeUTF(this.aktualnaMiestnost.getMenoMiestnosi());
+        save.writeInt(this.inventar.size());
+        for (IPredmet predmet : inventar.values()) {
+            save.writeUTF(predmet.getMeno());
+            predmet.ulozPoziciu(save);
+
+        }
 
     }
 
-    public void nacitajPoziciu(DataInputStream save) throws IOException {
+    public void nacitajPoziciu(DataInputStream save, int saveVersion) throws IOException {
         String miestnost = save.readUTF();
         this.aktualnaMiestnost = this.prostredie.getMiestnost(miestnost);
+        this.inventar.clear();
 
+        //predmety sa načítavajú len od nejakej verzie
+        if (saveVersion >= 1) {
+            int pocetPredmetov = save.readInt();
+            for (int i = 0; i < pocetPredmetov; i++) {
+                String predmet = save.readUTF();
+                IPredmet predmetObject = this.prostredie.newPredmet(predmet);
+                this.inventar.put(predmetObject.getMeno(), predmetObject);
+                if (saveVersion >= 2) {
+                    predmetObject.nacitajPoziciu(save, saveVersion);
+                }
+            }
+        }
     }
 }

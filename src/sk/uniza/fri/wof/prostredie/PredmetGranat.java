@@ -3,6 +3,9 @@ package sk.uniza.fri.wof.prostredie;
 import sk.uniza.fri.wof.hra.Hrac;
 import sk.uniza.fri.wof.prostredie.predmety.IPredmet;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.Random;
 
 public class PredmetGranat implements IPredmet {
@@ -26,5 +29,15 @@ public class PredmetGranat implements IPredmet {
         } else {
             System.out.println("Tento krát si mal stastie.\n");
         }
+    }
+
+    @Override
+    public void ulozPoziciu(DataOutputStream save) {
+
+    }
+
+    @Override
+    public void nacitajPoziciu(DataInputStream save, int saveVersion) throws IOException, IOException {
+
     }
 }
