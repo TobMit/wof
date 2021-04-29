@@ -73,7 +73,16 @@ public class NacitanieProstredia {
                 continue;
             }
         }
-        //this.zoznamMiestnosti = null;
+
+    System.out.println(this.zoznamMiestnosti.keySet());
+    }
+
+    public TreeMap<String, Miestnost> getZoznam() {
+        return this.zoznamMiestnosti;
+    }
+
+    public Miestnost getStartovaciaMiestnost() {
+        return this.startovaciaMiestnost;
     }
 
     public static void main(String[] args) {
