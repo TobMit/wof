@@ -13,6 +13,7 @@ public class NacitanieProstredia {
     private Miestnost startovaciaMiestnost;
     private ArrayList<String> riadkyVSubore;
     private final TreeMap<String, Miestnost> zoznamMiestnosti;
+
     public NacitanieProstredia() {
         this.zoznamMiestnosti = new TreeMap<>();
         this.riadkyVSubore = new ArrayList<>();
