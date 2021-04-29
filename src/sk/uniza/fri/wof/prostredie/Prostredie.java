@@ -154,11 +154,4 @@ public class Prostredie {
     public Miestnost getStartovaciaMiestnost() {
         return this.startovaciaMiestnost;
     }
-
-
-
-
-    public Miestnost getStartovaciaMiestnost() {
-        return this.startovaciaMiestnost;
-    }
 }
