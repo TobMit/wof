@@ -16,6 +16,8 @@ public class Prostredie {
     private final TreeMap<String, Miestnost> zoznamMiestnosti;
 
     public Prostredie() {
+
+
         this.zoznamMiestnosti = new TreeMap<>();
 
         // vytvorenie miestnosti
