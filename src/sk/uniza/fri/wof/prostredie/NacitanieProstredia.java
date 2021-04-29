@@ -5,6 +5,7 @@ import sk.uniza.fri.wof.prostredie.predmety.Predmet;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.TreeMap;
 
@@ -40,7 +41,9 @@ public class NacitanieProstredia {
             String[] slovaNacitania = nacitanie.split(" ");
             // ošetruje Miestnosti
             if (slovaNacitania[0].equals("Miestnost")) {
-                this.zoznamMiestnosti.put(nacitanie.replace(slovaNacitania[0] + " ", ""), new Miestnost(this.riadkyVSubore.get(sucastnyRiadok), nacitanie.replace(slovaNacitania[0] + " ", "")));
+                this.zoznamMiestnosti.put(nacitanie.replace(slovaNacitania[0] + " ", ""),
+                        new Miestnost(this.riadkyVSubore.get(sucastnyRiadok),
+                                nacitanie.replace(slovaNacitania[0] + " ", "")));
             }
         }
         Miestnost aktualnaMiestnost = null;
@@ -54,7 +57,9 @@ public class NacitanieProstredia {
                 aktualnaMiestnost = this.zoznamMiestnosti.get(nacitanie.replace(slovaNacitania[0] + " ", ""));
             }
             else if (slovaNacitania[0].equals("Vychod")) {
-                aktualnaMiestnost.nastavVychod(slovaNacitania[1], this.zoznamMiestnosti.get(slovaNacitania[2]));
+                aktualnaMiestnost.nastavVychod(slovaNacitania[1],
+                        this.zoznamMiestnosti.get(nacitanie.replace(slovaNacitania[0] + " ", "")
+                                .replace(slovaNacitania[1] + " ", "")));
             }
             // ošetruje Predmet
             else if (slovaNacitania[0].equals("Predmet")) {
@@ -74,11 +79,10 @@ public class NacitanieProstredia {
             }
         }
 
-    System.out.println(this.zoznamMiestnosti.keySet());
     }
 
     public TreeMap<String, Miestnost> getZoznam() {
-        return this.zoznamMiestnosti;
+        return new TreeMap<String, Miestnost>(this.zoznamMiestnosti);
     }
 
     public Miestnost getStartovaciaMiestnost() {

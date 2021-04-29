@@ -50,12 +50,16 @@ public class Miestnost {
     /**
      * @return textovy popis miestnosti.
      */
+    public String getNazov() {
+        return this.menoMiestnosti;
+    }
+
     public String getPopis() {
         return this.popisMiestnosti;
     }
 
     public void vypisPopisMiestnosti() {
-        System.out.println("Teraz si v miestnosti " + this.getPopis());
+        System.out.println("Teraz si v miestnosti " + this.getNazov() + " " + this.getPopis());
 
         this.vypisMiestnosti("Vychody", this.vychody);
         this.vypisPolozky("NPC", this.npccka.keySet());
@@ -74,6 +78,7 @@ public class Miestnost {
     private void vypisMiestnosti(String nadpis, TreeMap<String, Miestnost> vychody) {
 
         System.out.printf("%s: \n", nadpis);
+
         for (String meno : vychody.keySet()) {
             System.out.printf("\t%s [%s]\n", meno, vychody.get(meno).getMenoMiestnosi());
         }

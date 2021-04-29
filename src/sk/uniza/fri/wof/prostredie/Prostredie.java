@@ -25,6 +25,7 @@ public class Prostredie {
         this.nacitavac = new NacitanieProstredia();
 
         this.zoznamMiestnosti = this.nacitavac.getZoznam();
+
         this.startovaciaMiestnost = this.nacitavac.getStartovaciaMiestnost();
 
 
@@ -87,7 +88,7 @@ public class Prostredie {
         NpcDialogVstup korenDialogovehoStromuVratnicka = new NpcDialogVstup("Ahoj, ja som tu nejaka vratnicka. A ty si?", uvod);
         NpcDialogKontrolaQuestu kontrolaAspirinu = new NpcDialogKontrolaQuestu("aspirin", korenDialogovehoStromuVratnicka);
         NpcDialogQuest korenDialogovehoStromuUcitel = new NpcDialogQuest("Uz meskas na prezentaciu", new QuestPrezentacia("prezentacia"));
-        /*this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcDialogove("ucitel", korenDialogovehoStromuUcitel));
+        this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcDialogove("ucitel", korenDialogovehoStromuUcitel));
 
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcDialogove("vratnicka", kontrolaAspirinu));
 
@@ -95,7 +96,6 @@ public class Prostredie {
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcDialogove("bufetarka", korenDialogovehoStromuBufetarka));
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcObchodnik("jozo", this.newPredmet("rusko"), this.newPredmet("index"), this.newPredmet("borovicka")));
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcReferentka("referentka", this.zoznamMiestnosti, this.startovaciaMiestnost.getMenoMiestnosi()));
-        */
         /*
         //vestibula.polozPredmet(new PredmetRusko());
         this.zoznamMiestnosti.get("vestibula").polozPredmet(this.newPredmet("index"));
@@ -149,6 +149,10 @@ public class Prostredie {
             default:
                 return new Predmet(nazov);
         }
+    }
+
+    public Miestnost getStartovaciaMiestnost() {
+        return this.startovaciaMiestnost;
     }
 
 
