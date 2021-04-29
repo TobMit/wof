@@ -28,33 +28,31 @@ public class Prostredie {
         this.startovaciaMiestnost = this.nacitavac.getStartovaciaMiestnost();
 
 
-        this.zoznamMiestnosti = new TreeMap<>();
+//        //this.zoznamMiestnosti = new TreeMap<>();
+//        // vytvorenie miestnosti
+//        this.zoznamMiestnosti.put("terasa", new Miestnost("terasa - hlavny vstup na fakultu", "terasa"));
+//
+//        //Vchod a prvá miestnosť.
+//        this.zoznamMiestnosti.put("vestibula", new Miestnost("Vestibula", "vestibula"));
+//        this.zoznamMiestnosti.put("ic", new Miestnost("IC - informačné centrum", "ic"));
+//
+//        //Miestnosti ktoré sú priamo spojené s chodbou A
+//        this.zoznamMiestnosti.put("chodbaA", new Miestnost("Chodba A", "chodbaA"));
+//        this.zoznamMiestnosti.put("RA006", new Miestnost("RA006", "RA006"));
+//        this.zoznamMiestnosti.put("WcVChodbeA", new Miestnost("WC - Chodba - A", "WcVChodbeA"));
+//
+//        //Miestnosti ktoré sú priamo spojené s chodbou C
+//        this.zoznamMiestnosti.put("chodbaC", new Miestnost("chodba C", "chodbaC"));
+//        this.zoznamMiestnosti.put("aula", new Miestnost("Aula", "aula"));
+//        this.zoznamMiestnosti.put("WcVChodbeC", new Miestnost("WC - Chodba - C", "WcVChodbeC"));
+//        this.zoznamMiestnosti.put("jedalen", new Miestnost("Jedaleň", "jedalen"));
+//        //this.zoznamMiestnosti.put("bufet", new Miestnost("Bufet", "bufet"));
+//
+//        //Miestnosti ktoré sú priamo spojené s chodbou C
+//        this.zoznamMiestnosti.put("chodbaB", new Miestnost("chodba B", "chodbaB"));
+//        this.zoznamMiestnosti.put("chillZone", new Miestnost("Chill Zone", "chillZone"));
 
-        // vytvorenie miestnosti
-        this.zoznamMiestnosti.put("terasa", new Miestnost("terasa - hlavny vstup na fakultu", "terasa"));
-
-        //Vchod a prvá miestnosť.
-        this.zoznamMiestnosti.put("vestibula", new Miestnost("Vestibula", "vestibula"));
-        this.zoznamMiestnosti.put("ic", new Miestnost("IC - informačné centrum", "ic"));
-
-        //Miestnosti ktoré sú priamo spojené s chodbou A
-        this.zoznamMiestnosti.put("chodbaA", new Miestnost("Chodba A", "chodbaA"));
-        this.zoznamMiestnosti.put("RA006", new Miestnost("RA006", "RA006"));
-        this.zoznamMiestnosti.put("WcVChodbeA", new Miestnost("WC - Chodba - A", "WcVChodbeA"));
-
-        //Miestnosti ktoré sú priamo spojené s chodbou C
-        this.zoznamMiestnosti.put("chodbaC", new Miestnost("chodba C", "chodbaC"));
-        this.zoznamMiestnosti.put("aula", new Miestnost("Aula", "aula"));
-        this.zoznamMiestnosti.put("WcVChodbeC", new Miestnost("WC - Chodba - C", "WcVChodbeC"));
-        this.zoznamMiestnosti.put("jedalen", new Miestnost("Jedaleň", "jedalen"));
-        //this.zoznamMiestnosti.put("bufet", new Miestnost("Bufet", "bufet"));
-
-        //Miestnosti ktoré sú priamo spojené s chodbou C
-        this.zoznamMiestnosti.put("chodbaB", new Miestnost("chodba B", "chodbaB"));
-        this.zoznamMiestnosti.put("chillZone", new Miestnost("Chill Zone", "chillZone"));
-
-
-        this.startovaciaMiestnost = this.zoznamMiestnosti.get("vestibula");
+        //this.startovaciaMiestnost = this.zoznamMiestnosti.get("vestibula");
         //Miestnosti ktoré neviem kde sú
         //Miestnost labak = new Miestnost("pocitacove laboratorium");
         //Miestnost kancelaria = new Miestnost("kancelaria spravcu pocitacoveho laboratoria");
@@ -71,7 +69,7 @@ public class Prostredie {
 
 
         this.zoznamMiestnosti.get("ic").nastavVychod("zapad", this.zoznamMiestnosti.get("vestibula"));
-
+*/
         NpcDialogVrchol vsetkoMaBoli = new NpcDialogVrchol("Vsetko ma boli, tak nezavadzaj.");
         NpcDialogVrchol padajPrec = new NpcDialogVrchol("Joj, tak padaj prec.");
         NpcDialogQuest vratnickaQuest = new NpcDialogQuest("Dakujem", new QuestAspirin("aspirin"));
@@ -97,8 +95,8 @@ public class Prostredie {
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcDialogove("bufetarka", korenDialogovehoStromuBufetarka));
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcObchodnik("jozo", this.newPredmet("rusko"), this.newPredmet("index"), this.newPredmet("borovicka")));
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcReferentka("referentka", this.zoznamMiestnosti, this.startovaciaMiestnost.getMenoMiestnosi()));
-
-
+        */
+        /*
         //vestibula.polozPredmet(new PredmetRusko());
         this.zoznamMiestnosti.get("vestibula").polozPredmet(this.newPredmet("index"));
         //this.zoznamMiestnosti.get("vestibula").polozPredmet(new PredmetPortalGun("TatraTea", "Slovenská verzia PortalGan", this));
@@ -151,5 +149,12 @@ public class Prostredie {
             default:
                 return new Predmet(nazov);
         }
+    }
+
+
+
+
+    public Miestnost getStartovaciaMiestnost() {
+        return this.startovaciaMiestnost;
     }
 }

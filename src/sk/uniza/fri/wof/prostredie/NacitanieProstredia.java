@@ -32,7 +32,6 @@ public class NacitanieProstredia {
 
         String nazovMiestnosti = "";
 
-        //System.out.println(this.riadkyVSubore);
         int sucastnyRiadok = 0;
 
         for (String nacitanie : this.riadkyVSubore) {
@@ -54,7 +53,7 @@ public class NacitanieProstredia {
                 aktualnaMiestnost = this.zoznamMiestnosti.get(nacitanie.replace(slovaNacitania[0] + " ", ""));
             }
             else if (slovaNacitania[0].equals("Vychod")) {
-                aktualnaMiestnost.nastavVychod();
+                aktualnaMiestnost.nastavVychod(slovaNacitania[1], this.zoznamMiestnosti.get(slovaNacitania[2]));
             }
             // ošetruje Predmet
             else if (slovaNacitania[0].equals("Predmet")) {
