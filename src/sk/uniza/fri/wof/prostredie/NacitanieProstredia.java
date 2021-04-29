@@ -27,7 +27,51 @@ public class NacitanieProstredia {
             }
             scanner.close();
         }
-        System.out.println(this.riadkyVSubore);
+
+        String nazovMiestnosti = "";
+
+        //System.out.println(this.riadkyVSubore);
+        int sucastnyRiadok = 0;
+
+        for (String nacitanie : this.riadkyVSubore) {
+            sucastnyRiadok++;
+            String[] slovaNacitania = nacitanie.split(" ");
+            // ošetruje Miestnosti
+            if (slovaNacitania[0].equals("Miestnost")) {
+                //this.zoznamMiestnosti.put(slovaNacitania[1] + slovaNacitania[2], new Miestnost());
+                this.zoznamMiestnosti.put(nacitanie.replace(slovaNacitania[0] + " ", ""), new Miestnost(this.riadkyVSubore.get(sucastnyRiadok + 1), nacitanie.replace(slovaNacitania[0] + " ", "")));
+                //System.out.println(nacitanie.replace(slovaNacitania[0] + " ", ""));
+            }
+        }
+
+        System.out.println(this.zoznamMiestnosti);
+        Miestnost aktualnaMiestnost = null;
+
+        for (String nacitanie : this.riadkyVSubore) {
+            sucastnyRiadok++;
+            String[] slovaNacitania = nacitanie.split(" ");
+            // ošetruje Miestnosti
+            if (slovaNacitania[0].equals("Miestnost")) {
+                aktualnaMiestnost = this.zoznamMiestnosti.get(nacitanie.replace(slovaNacitania[0] + " ", ""));
+            }
+            else if (slovaNacitania[0].equals("Vychod")) {
+                aktualnaMiestnost.nastavVychod();
+            }
+            // ošetruje Predmet
+            else if (slovaNacitania[0].equals("Predmet")) {
+                aktualnaMiestnost.polozPredmet(new Predmet(nacitanie.replace(slovaNacitania[0] + " ", "")));
+
+            }
+            // ošetruje nový riadok
+            else if (nacitanie.equals("")) {
+                continue;
+            }
+            // ošetruje popis
+            else {
+                continue;
+            }
+        }
+        //this.zoznamMiestnosti = null;
     }
 
     public static void main(String[] args) {
