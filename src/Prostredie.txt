@@ -1,0 +1,55 @@
+Miestnost RA006
+krasna ucebna, plna pocitacov, mysi a potkanov
+Vychod vychod chodba a
+
+Miestnost chodba a
+dlha chodba so svetlom monitorov na konci
+Vychod zapad RA006
+Vychod vychod wc a
+Vychod juh vestibula
+Vychod dole chodba c
+
+Miestnost wc a
+nezabudni si zobrat mobil, nech sa nenudis
+Vychod zapad chodba a
+
+Miestnost jedalen
+rozvoniava tu jedlo z krabicky
+Vychod vychod chodba c
+
+Miestnost chodba c
+podzemna chodba
+Vychod zapad jedalen
+Vychod zapad2 wc c
+Vychod juh aula
+Vychod hore chodba a
+
+Miestnost vestibula
+tu zacinas svoju put
+Vychod sever chodba a
+Vychod vychod ic
+Vychod juh chodba b
+Predmet index
+Predmet granat
+Start
+
+Miestnost ic
+vdaka mnozstvu knih naokolo tu kazdy vyzera kusok inteligentnejsie
+Vychod zapad vestibula
+
+Miestnost wc c
+ked musis, tak musis - aj v podzemi
+Vychod vychod chodba c
+
+Miestnost aula
+nieco ako muciaren
+Vychod sever chodba c
+
+Miestnost chodba b
+temna chodba
+Vychod sever vestibula
+Vychod juh chill zone
+
+Miestnost chill zone
+ak niekto nema internet zo sebou, tu nejaky najde vzdy
+Vychod sever chodba b
