@@ -22,7 +22,7 @@ public class Prostredie {
     private final TreeMap<String, Miestnost> zoznamMiestnosti;
 
     public Prostredie() {
-        this.nacitavac = new NacitanieProstredia();
+        this.nacitavac = new NacitanieProstredia(this);
 
         this.zoznamMiestnosti = this.nacitavac.getZoznam();
 
@@ -96,6 +96,7 @@ public class Prostredie {
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcDialogove("bufetarka", korenDialogovehoStromuBufetarka));
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcObchodnik("jozo", this.newPredmet("rusko"), this.newPredmet("index"), this.newPredmet("borovicka")));
         this.zoznamMiestnosti.get("vestibula").postavNpc(new NpcReferentka("referentka", this.zoznamMiestnosti, this.startovaciaMiestnost.getMenoMiestnosi()));
+        this.zoznamMiestnosti.get("vestibula").polozPredmet(new PredmetPortalGun("TatraTea", this));
         /*
         //vestibula.polozPredmet(new PredmetRusko());
         this.zoznamMiestnosti.get("vestibula").polozPredmet(this.newPredmet("index"));
@@ -125,15 +126,16 @@ public class Prostredie {
         this.zoznamMiestnosti.get("chodbaC").nastavVychod("juh", this.zoznamMiestnosti.get("aula"));
         this.zoznamMiestnosti.get("aula").nastavVychod("sever", this.zoznamMiestnosti.get("chodbaC"));
     */
-
-//    public void pridajVychod(String nazovPortalu, Miestnost miestnost, Miestnost miestnostPolozenia) {
-//        this.zoznamMiestnosti.get(miestnostPolozenia.getMenoMiestnosi()).nastavVychod(nazovPortalu, this.zoznamMiestnosti.get(miestnost.getMenoMiestnosi()));
-//    }
-//
-//    public void odstranVychod(String nazovPortalu, Miestnost miestnost) {
-//        this.zoznamMiestnosti.get(miestnost.getMenoMiestnosi()).vymazVychod(nazovPortalu);
-//    }
     }
+
+    public void pridajVychod(String nazovPortalu, Miestnost miestnost, Miestnost miestnostPolozenia) {
+        this.zoznamMiestnosti.get(miestnostPolozenia.getMenoMiestnosi()).nastavVychod(nazovPortalu, this.zoznamMiestnosti.get(miestnost.getMenoMiestnosi()));
+    }
+
+    public void odstranVychod(String nazovPortalu, Miestnost miestnost) {
+        this.zoznamMiestnosti.get(miestnost.getMenoMiestnosi()).vymazVychod(nazovPortalu);
+    }
+
     public Miestnost getMiestnost(String nazovMiestnosti) {
         return this.zoznamMiestnosti.get(nazovMiestnosti);
     }

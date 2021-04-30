@@ -1,21 +1,24 @@
 package sk.uniza.fri.wof.prostredie;
 
 import sk.uniza.fri.wof.prostredie.predmety.Predmet;
+import sk.uniza.fri.wof.prostredie.predmety.PredmetPortalGun;
+import sk.uniza.fri.wof.prostredie.predmety.PredmetRusko;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.TreeMap;
 
 public class NacitanieProstredia {
 
+    private final Prostredie referenciaProstredia;
     private Miestnost startovaciaMiestnost;
     private ArrayList<String> riadkyVSubore;
     private final TreeMap<String, Miestnost> zoznamMiestnosti;
 
-    public NacitanieProstredia() {
+    public NacitanieProstredia(Prostredie prostredie) {
+        this.referenciaProstredia = prostredie;
         this.zoznamMiestnosti = new TreeMap<>();
         this.riadkyVSubore = new ArrayList<>();
         Scanner scanner = null;
@@ -63,7 +66,22 @@ public class NacitanieProstredia {
             }
             // ošetruje Predmet
             else if (slovaNacitania[0].equals("Predmet")) {
-                aktualnaMiestnost.polozPredmet(new Predmet(nacitanie.replace(slovaNacitania[0] + " ", "")));
+                System.out.println(nacitanie.replace(slovaNacitania[0] + " ", ""));
+                switch (nacitanie.replace(slovaNacitania[0] + " ", "")) {
+                    case "granat":
+                        aktualnaMiestnost.polozPredmet(new PredmetGranat(nacitanie.replace(slovaNacitania[0] + " ", "")));
+                        break;
+                    case "TatraTea":
+                        aktualnaMiestnost.polozPredmet(new PredmetPortalGun(nacitanie.replace(slovaNacitania[0] + " ", ""), referenciaProstredia));
+                        break;
+                    case "rusko":
+                        aktualnaMiestnost.polozPredmet(new PredmetRusko());
+                        break;
+                    default:
+                        aktualnaMiestnost.polozPredmet(new Predmet(nacitanie.replace(slovaNacitania[0] + " ", "")));
+                        break;
+                }
+                //aktualnaMiestnost.polozPredmet(new Predmet(nacitanie.replace(slovaNacitania[0] + " ", "")));
 
             }
             // ošetruje nový riadok
@@ -89,7 +107,4 @@ public class NacitanieProstredia {
         return this.startovaciaMiestnost;
     }
 
-    public static void main(String[] args) {
-        new NacitanieProstredia();
-    }
 }
